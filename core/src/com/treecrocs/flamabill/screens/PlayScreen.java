@@ -5,6 +5,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.treecrocs.flamabill.Flamabill;
 
@@ -14,12 +17,24 @@ public class PlayScreen implements Screen {
     private ExtendViewport viewport;
     private Flamabill game;
     //private Player player;
+    private TextureAtlas atlas;
+
+    private World world;
 
     public PlayScreen (Flamabill game){
         this.game = game;
 
+        // Create world object with -9.8g in Y axis
+        this.world = new World(new Vector2(0f,-9.80f), true);
+
+        //atlas = new TextureAtlas("atlas.atlas");
+
         camera = new OrthographicCamera();
         viewport = new ExtendViewport(1200,800, camera);
+    }
+
+    public World getWorld(){
+        return this.world;
     }
 
     @Override
