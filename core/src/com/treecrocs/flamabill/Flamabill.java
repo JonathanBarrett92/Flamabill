@@ -11,11 +11,12 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.treecrocs.flamabill.screens.PlayScreen;
 
 public class Flamabill extends Game {
-
 	//Pixels per metre scaling value
+    public static final int V_WIDTH = 1200;
+    public static final int V_HEIGHT = 600;
 	public static final float PPM = 100.0f;
 
-	SpriteBatch batch;
+	public SpriteBatch batch;
 	
 	@Override
 	public void create () {
