@@ -16,6 +16,10 @@
       <module name="Development.core.test" target="1.6" />
       <module name="Development.desktop.main" target="1.6" />
       <module name="Development.desktop.test" target="1.6" />
+      <module name="Flamabill.core.main" target="1.6" />
+      <module name="Flamabill.core.test" target="1.6" />
+      <module name="Flamabill.desktop.main" target="1.6" />
+      <module name="Flamabill.desktop.test" target="1.6" />
     </bytecodeTargetLevel>
   </component>
   <component name="CopyrightManager" default="" />
@@ -73,13 +77,13 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Development.iml" filepath="$PROJECT_DIR$/Development.iml" />
-      <module fileurl="file://$PROJECT_DIR$/core/Development.core.iml" filepath="$PROJECT_DIR$/core/Development.core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/core/Development.core.main.iml" filepath="$PROJECT_DIR$/core/Development.core.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/core/Development.core.test.iml" filepath="$PROJECT_DIR$/core/Development.core.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/desktop/Development.desktop.iml" filepath="$PROJECT_DIR$/desktop/Development.desktop.iml" />
-      <module fileurl="file://$PROJECT_DIR$/desktop/Development.desktop.main.iml" filepath="$PROJECT_DIR$/desktop/Development.desktop.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/desktop/Development.desktop.test.iml" filepath="$PROJECT_DIR$/desktop/Development.desktop.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Flamabill.iml" filepath="$PROJECT_DIR$/Flamabill.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core/Flamabill.core.iml" filepath="$PROJECT_DIR$/core/Flamabill.core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core/Flamabill.core.main.iml" filepath="$PROJECT_DIR$/core/Flamabill.core.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core/Flamabill.core.test.iml" filepath="$PROJECT_DIR$/core/Flamabill.core.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/desktop/Flamabill.desktop.iml" filepath="$PROJECT_DIR$/desktop/Flamabill.desktop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/desktop/Flamabill.desktop.main.iml" filepath="$PROJECT_DIR$/desktop/Flamabill.desktop.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/desktop/Flamabill.desktop.test.iml" filepath="$PROJECT_DIR$/desktop/Flamabill.desktop.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/desktop/desktop.iml" filepath="$PROJECT_DIR$/desktop/desktop.iml" />
     </modules>

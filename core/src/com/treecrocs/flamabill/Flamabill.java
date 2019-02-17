@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.treecrocs.flamabill.screens.MenuScreen;
 import com.treecrocs.flamabill.screens.PlayScreen;
 
 public class Flamabill extends Game {
@@ -15,12 +16,12 @@ public class Flamabill extends Game {
 	//Pixels per metre scaling value
 	public static final float PPM = 100.0f;
 
-	SpriteBatch batch;
+	public SpriteBatch batch;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		setScreen(new PlayScreen(this));
+		setScreen(new MenuScreen(this));
 		//img = new Texture("badlogic.jpg");
 
 	}
