@@ -51,10 +51,10 @@ public class MenuScreen implements Screen {
         game.batch.begin();
 
         //used to find out where the mouse is as well as position the buttons on the X axis
-        int x = (Flamabill.WIDTH/2) - (Button_Width/2);
+        int x = (Flamabill.V_WIDTH/2) - (Button_Width/2);
 
         //play button code for positioning and telling it what to do when hovered or clicked GAME SCREEN MUST BE CHANGED
-        if (Gdx.input.getX() < x+Button_Width && Gdx.input.getX() > x && Flamabill.HEIGHT - Gdx.input.getY() > PlayButtonY && Flamabill.HEIGHT - Gdx.input.getY() < PlayButtonY+Button_Height) {
+        if (Gdx.input.getX() < x+Button_Width && Gdx.input.getX() > x && Flamabill.V_HEIGHT - Gdx.input.getY() > PlayButtonY && Flamabill.V_HEIGHT - Gdx.input.getY() < PlayButtonY+Button_Height) {
             game.batch.draw(PlayButtonActive, x, PlayButtonY, Button_Width, Button_Height);
 
             //Changes game screen to the actual game, passes that on to Damo i think
@@ -66,7 +66,7 @@ public class MenuScreen implements Screen {
         }
 
         //Quit button code for positioning and telling it what to do when hovered or clicked
-        if (Gdx.input.getX() < x+Button_Width && Gdx.input.getX() > x && Flamabill.HEIGHT - Gdx.input.getY() > QuitButtonY && Flamabill.HEIGHT - Gdx.input.getY() < QuitButtonY+Button_Height) {
+        if (Gdx.input.getX() < x+Button_Width && Gdx.input.getX() > x && Flamabill.V_HEIGHT - Gdx.input.getY() > QuitButtonY && Flamabill.V_HEIGHT - Gdx.input.getY() < QuitButtonY+Button_Height) {
             game.batch.draw(QuitButtonActive, x, QuitButtonY, Button_Width, Button_Height);
 
             //quits the game when clicked

@@ -8,9 +8,11 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "Flamabill";
-		config.width = Flamabill.WIDTH;
-		config.height = Flamabill.HEIGHT;
+
 		config.resizable = false;
+
+		config.width = Flamabill.V_WIDTH;
+		config.height = Flamabill.V_HEIGHT;
 		new LwjglApplication(new Flamabill(), config);
 	}
 }
