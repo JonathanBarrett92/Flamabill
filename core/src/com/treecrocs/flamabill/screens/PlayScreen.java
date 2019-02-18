@@ -20,6 +20,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.treecrocs.flamabill.Flamabill;
+import com.treecrocs.flamabill.Scenes.Hud;
 import com.treecrocs.flamabill.tools.B2WorldLoader;
 
 public class PlayScreen implements Screen {
@@ -30,6 +31,7 @@ public class PlayScreen implements Screen {
     private Flamabill game;
     //private Player player;
     private TextureAtlas atlas;
+    private Hud hud;
 
     private World world;
 
@@ -69,6 +71,8 @@ public class PlayScreen implements Screen {
 
         // Loads in the objects
         new B2WorldLoader(world, map);
+
+        hud = new Hud(game.batch);
     }
 
     public World getWorld(){
@@ -144,10 +148,10 @@ public class PlayScreen implements Screen {
         */
 
         // Hud stuff
-        /*
+
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
-        */
+
     }
 
     @Override
