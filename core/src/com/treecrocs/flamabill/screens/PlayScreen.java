@@ -1,26 +1,26 @@
 package com.treecrocs.flamabill.screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-
+import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
-
-import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 import com.treecrocs.flamabill.Flamabill;
 import com.treecrocs.flamabill.Scenes.Hud;
+import com.treecrocs.flamabill.characters.Player;
+import com.treecrocs.flamabill.sprites.FlamaBill;
 import com.treecrocs.flamabill.tools.B2WorldLoader;
 
 public class PlayScreen implements Screen {
@@ -29,7 +29,7 @@ public class PlayScreen implements Screen {
     //private ExtendViewport viewport;
     private FitViewport viewport;
     private Flamabill game;
-    //private Player player;
+    private Player player;
     private TextureAtlas atlas;
     private Hud hud;
 
@@ -69,6 +69,25 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0, -10f), true);
         b2dr = new Box2DDebugRenderer();
 
+        BodyDef bdef = new BodyDef();
+        PolygonShape shape = new PolygonShape();
+        FixtureDef fdef = new FixtureDef();
+        Body body;
+
+        for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class))
+        {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            bdef.type = BodyDef.BodyType.StaticBody;
+            bdef.position.set(rect.getX() + rect.getWidth() / 2, rect.getHeight() / 2);
+
+            body = world.createBody(bdef);
+
+            shape.setAsBox(rect.getWidth() / 2, rect.getHeight()/ 2);
+            fdef.shape = shape;
+            body.createFixture(fdef);
+        }
+
         // Loads in the objects
         new B2WorldLoader(world, map);
 
@@ -88,10 +107,10 @@ public class PlayScreen implements Screen {
     public void update(float dt) {
         world.step(1/60f, 6, 2);
 
-        /*
-        // player's body becomes the center of the camera position
-        camera.position.x = player.b2body.getPosition().x;
-        */
+
+        //player's body becomes the center of the camera position
+        //camera.position.x = FlamaBill.b2body.getPosition().x;
+
 
         // Player Movement
         /*
