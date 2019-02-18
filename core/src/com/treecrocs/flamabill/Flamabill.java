@@ -13,6 +13,9 @@ import com.treecrocs.flamabill.screens.PlayScreen;
 
 public class Flamabill extends Game {
 
+	public static final int WIDTH = 1200;
+	public static final int HEIGHT = 800;
+
 	//Pixels per metre scaling value
 	public static final float PPM = 100.0f;
 
