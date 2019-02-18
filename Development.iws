@@ -224,7 +224,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DesktopLauncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="DesktopLauncher" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.treecrocs.flamabill.desktop.DesktopLauncher" />
       <module name="Development.desktop.main" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/core/assets" />
@@ -316,11 +316,6 @@
         <option name="BuildArtifacts" enabled="false" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.DesktopLauncher" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
