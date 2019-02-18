@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1cfa5d5c-64df-46a3-aa43-592e1bfde4a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/core/out/production/classes/META-INF/Flamabill.core.main.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/sprites/RectTileObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/tools/B2WorldLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stuff/Tiled/New Text Document.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stuff/Tiled/cavesofgallet/cavesofgallet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stuff/Tiled/cavesofgallet/cavesofgallet_tiles-new.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stuff/Tiled/cavesofgallet/cavesofgallet_tiles.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stuff/Tiled/cavesofgallet_tiles-new.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stuff/Tiled/cavesofgallet_tiles.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stuff/Tiled/cavesofgallet_tiles1.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stuff/Tiled/testmap2.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Development.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/Development.ipr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Development.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Development.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/core.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/out/production/classes/com/treecrocs/flamabill/Flamabill.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/out/production/classes/com/treecrocs/flamabill/Flamabill.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/Flamabill.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/Flamabill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/screens/MenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/screens/MenuScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/screens/PlayScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/screens/PlayScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/desktop.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/out/production/classes/com/treecrocs/flamabill/desktop/DesktopLauncher.class" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/out/production/classes/com/treecrocs/flamabill/desktop/DesktopLauncher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/src/com/treecrocs/flamabill/desktop/DesktopLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/src/com/treecrocs/flamabill/desktop/DesktopLauncher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-    </list>
+    <list default="true" id="1cfa5d5c-64df-46a3-aa43-592e1bfde4a6" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -108,8 +84,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/desktop/src/com/treecrocs/flamabill/desktop/DesktopLauncher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="13" column="41" lean-forward="true" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+            <state relative-caret-position="272">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
             </state>
           </provider>
         </entry>
@@ -201,6 +177,35 @@
               <item name="Flamabill" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Development" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Flamabill" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="Development" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Flamabill" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="flamabill" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Development" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Flamabill" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="flamabill" type="462c0819:PsiDirectoryNode" />
+              <item name="screens" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Development" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Flamabill" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="flamabill" type="462c0819:PsiDirectoryNode" />
+              <item name="sprites" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -354,18 +359,18 @@
       <workItem from="1549896505361" duration="3074000" />
       <workItem from="1550409812503" duration="12293000" />
       <workItem from="1550489339244" duration="3291000" />
-      <workItem from="1550513501764" duration="346000" />
+      <workItem from="1550513501764" duration="1797000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23887000" />
+    <option name="totallyTimeSpent" value="25338000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17449665" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17449665" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -374,7 +379,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3323782" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.33144477" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -383,7 +388,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" weight="0.32577905" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32577905" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Version Control" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -446,8 +451,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/desktop/src/com/treecrocs/flamabill/desktop/DesktopLauncher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="13" column="41" lean-forward="true" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+        <state relative-caret-position="272">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
