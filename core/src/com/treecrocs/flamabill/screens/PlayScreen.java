@@ -41,7 +41,7 @@ public class PlayScreen implements Screen {
 
     public PlayScreen (Flamabill game){
         this.game = game;
-        
+
         // Camera and viewport
 
         // Create world object with -9.8g in Y axis
