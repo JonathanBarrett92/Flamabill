@@ -6,11 +6,16 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
+
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -24,8 +29,10 @@ public class PlayScreen implements Screen {
     private FitViewport viewport;
     private Flamabill game;
     //private Player player;
+    private TextureAtlas atlas;
 
     private World world;
+
     // Debug renderer gives outlines to the objects
     private Box2DDebugRenderer b2dr;
     private TmxMapLoader maploader;
@@ -34,8 +41,14 @@ public class PlayScreen implements Screen {
 
     public PlayScreen (Flamabill game){
         this.game = game;
-
+        
         // Camera and viewport
+
+        // Create world object with -9.8g in Y axis
+        this.world = new World(new Vector2(0f,-9.80f), true);
+
+        //atlas = new TextureAtlas("atlas.atlas");
+
         camera = new OrthographicCamera();
         viewport = new FitViewport(Flamabill.V_WIDTH / Flamabill.PPM,Flamabill.V_HEIGHT / Flamabill.PPM, camera);
 
@@ -56,6 +69,10 @@ public class PlayScreen implements Screen {
 
         // Loads in the objects
         new B2WorldLoader(world, map);
+    }
+
+    public World getWorld(){
+        return this.world;
     }
 
     @Override

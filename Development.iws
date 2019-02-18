@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="1cfa5d5c-64df-46a3-aa43-592e1bfde4a6" name="Default Changelist" comment="" />
+=======
+    <list default="true" id="1cfa5d5c-64df-46a3-aa43-592e1bfde4a6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/characters/PlayerState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Development.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Development.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/screens/PlayScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/screens/PlayScreen.java" afterDir="false" />
+    </list>
+>>>>>>> master
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -93,17 +101,59 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/treecrocs/flamabill/Flamabill.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="187">
               <caret line="11" column="50" lean-forward="true" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+=======
+            <state relative-caret-position="-59">
+              <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+>>>>>>> master
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#752#753#0" expanded="true" />
+                <element signature="e#780#781#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/core/src/com/treecrocs/flamabill/screens/MenuScreen.java">
+=======
+        <entry file="file://$PROJECT_DIR$/core/src/com/treecrocs/flamabill/characters/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="424">
+              <caret line="42" column="41" lean-forward="true" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#983#998#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/treecrocs/flamabill/characters/PlayerState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="116" column="6" selection-start-line="116" selection-start-column="6" selection-end-line="116" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/treecrocs/flamabill/Flamabill.java">
+>>>>>>> master
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="190">
               <caret line="53" column="57" lean-forward="true" selection-start-line="53" selection-start-column="57" selection-end-line="53" selection-end-column="57" />
@@ -120,6 +170,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -129,6 +180,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/desktop/src/com/treecrocs/flamabill/desktop/DesktopLauncher.java" />
+        <option value="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/Flamabill.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/characters/PlayerState.java" />
+        <option value="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/characters/Player.java" />
+>>>>>>> master
         <option value="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/screens/PlayScreen.java" />
         <option value="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/screens/MenuScreen.java" />
         <option value="$PROJECT_DIR$/core/src/com/treecrocs/flamabill/Flamabill.java" />
@@ -140,11 +199,17 @@
     <option name="LAST_EDITED_MODULE_NAME" />
     <option name="LAST_EDITED_TAB_NAME" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="497" />
     <option name="y" value="47" />
     <option name="width" value="978" />
     <option name="height" value="1039" />
+=======
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
+>>>>>>> master
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -197,6 +262,14 @@
               <item name="core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="flamabill" type="462c0819:PsiDirectoryNode" />
+              <item name="characters" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Development" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Development" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="flamabill" type="462c0819:PsiDirectoryNode" />
               <item name="screens" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -224,7 +297,11 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+<<<<<<< HEAD
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550508690945" />
+=======
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550246459744" />
+>>>>>>> master
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Development.ipr" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -356,14 +433,19 @@
       <option name="presentableId" value="Default" />
       <updated>1549300277297</updated>
       <workItem from="1549300278531" duration="3377000" />
+<<<<<<< HEAD
       <workItem from="1549896505361" duration="3074000" />
       <workItem from="1550409812503" duration="12293000" />
       <workItem from="1550489339244" duration="3291000" />
       <workItem from="1550513501764" duration="1797000" />
+=======
+      <workItem from="1549896505361" duration="9808000" />
+>>>>>>> master
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="25338000" />
   </component>
   <component name="ToolWindowManager">
@@ -371,6 +453,15 @@
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17449665" />
+=======
+    <option name="totallyTimeSpent" value="13185000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24606581" />
+>>>>>>> master
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -379,7 +470,11 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.33144477" />
+=======
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27349398" />
+>>>>>>> master
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -411,9 +506,21 @@
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/desktop/src/com/treecrocs/flamabill/desktop/DesktopLauncher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1525" />
+        <state relative-caret-position="216">
+          <caret line="116" column="6" selection-start-line="116" selection-start-column="6" selection-end-line="116" selection-end-column="6" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/treecrocs/flamabill/screens/PlayScreen.java">
@@ -426,6 +533,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/core/assets/Menu_Button_Play_active.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -433,18 +541,39 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="53" column="57" lean-forward="true" selection-start-line="53" selection-start-column="57" selection-end-line="53" selection-end-column="57" />
+=======
+    <entry file="file://$PROJECT_DIR$/core/src/com/treecrocs/flamabill/characters/PlayerState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/treecrocs/flamabill/characters/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="42" column="41" lean-forward="true" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+>>>>>>> master
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#983#998#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/treecrocs/flamabill/Flamabill.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="187">
           <caret line="11" column="50" lean-forward="true" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+=======
+        <state relative-caret-position="-59">
+          <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+>>>>>>> master
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#752#753#0" expanded="true" />
+            <element signature="e#780#781#0" expanded="true" />
           </folding>
         </state>
       </provider>
