@@ -2,56 +2,56 @@ Flama-Bill-Complete.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Flama-Bill-Complete_Standing
+Flama-Bill-Complete_Standing_1
   rotate: false
   xy: 0,0
   size: 64,64
   orig: 64,64
   offset: 0,0
   index: 0
-Flama-Bill-Complete_Standing
+Flama-Bill-Complete_Standing_2
   rotate: false
   xy: 64,0
   size: 64,64
   orig: 64,64
   offset: 0,0
   index: 1
-Flama-Bill-Complete_Standing
+Flama-Bill-Complete_Standing_3
   rotate: false
   xy: 128,0
   size: 64,64
   orig: 64,64
   offset: 0,0
   index: 2
-Flama-Bill-Complete_Standing
+Flama-Bill-Complete_Standing_4
   rotate: false
   xy: 192,0
   size: 64,64
   orig: 64,64
   offset: 0,0
   index: 3
-Flama-Bill-Complete_Standing
+Flama-Bill-Complete_Standing_5
   rotate: false
   xy: 256,0
   size: 64,64
   orig: 64,64
   offset: 0,0
   index: 4
-Flama-Bill-Complete_Standing
+Flama-Bill-Complete_Standing_6
   rotate: false
   xy: 320,0
   size: 64,64
   orig: 64,64
   offset: 0,0
   index: 5
-Flama-Bill-Complete_Standing
+Flama-Bill-Complete_Standing_7
   rotate: false
   xy: 384,0
   size: 64,64
   orig: 64,64
   offset: 0,0
   index: 6
-Flama-Bill-Complete_Standing
+Flama-Bill-Complete_Standing_8
   rotate: false
   xy: 448,0
   size: 64,64

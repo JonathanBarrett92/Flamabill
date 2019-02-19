@@ -3,10 +3,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.treecrocs.flamabill.Flamabill;
 
 //Not sure what this does to be honest
-import java.awt.datatransfer.FlavorMap;
 
 
 public class MenuScreen implements Screen {
@@ -16,6 +19,12 @@ public class MenuScreen implements Screen {
     private static final int Button_Height = 150;
     private static final int PlayButtonY = 300;
     private static final int QuitButtonY = 100;
+    private final Animation RunAnimation;
+
+    private SpriteBatch batch;
+    private TextureAtlas textureAtlas;
+    private Animation animation;
+    private float elapsedTime = 0;
 
     //calls info from Flamabill.java
     Flamabill game;
@@ -26,6 +35,7 @@ public class MenuScreen implements Screen {
     Texture QuitButtonActive;
     Texture QuitButtonInactive;
 
+
     public MenuScreen(Flamabill game){
         this.game = game;
 
@@ -35,7 +45,24 @@ public class MenuScreen implements Screen {
         QuitButtonActive = new Texture("Menu_Button_Quit_active.png");
         QuitButtonInactive = new Texture("Menu_Button_Quit_Inactive.png");
 
+        batch = new SpriteBatch();
+        textureAtlas = new TextureAtlas(Gdx.files.internal("Flama-Bill-Complete.atlas"));
+        //animation = new Animation(1/15f, textureAtlas.getRegions());
 
+        TextureRegion[] Run = new TextureRegion[8];
+
+        // Rotate Up Animation
+        // Create an array of TextureRegions
+        Run[0] = (textureAtlas.findRegion("Flama-Bill-Complete_Standing_1"));
+        Run[1] = (textureAtlas.findRegion("Flama-Bill-Complete_Standing_2"));
+        Run[2] = (textureAtlas.findRegion("Flama-Bill-Complete_Standing_3"));
+        Run[3] = (textureAtlas.findRegion("Flama-Bill-Complete_Standing_4"));
+        Run[4] = (textureAtlas.findRegion("Flama-Bill-Complete_Standing_5"));
+        Run[5] = (textureAtlas.findRegion("Flama-Bill-Complete_Standing_6"));
+        Run[6] = (textureAtlas.findRegion("Flama-Bill-Complete_Standing_7"));
+        Run[7] = (textureAtlas.findRegion("Flama-Bill-Complete_Standing_8"));
+
+        RunAnimation = new Animation(0.1f, Run);
     }
 
     @Override
@@ -78,6 +105,15 @@ public class MenuScreen implements Screen {
         }
 
         game.batch.end();
+
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        batch.begin();
+        //sprite.draw(batch);
+        elapsedTime += Gdx.graphics.getDeltaTime();
+        batch.draw((TextureRegion) RunAnimation.getKeyFrame(elapsedTime, true), 0, 0);
+        batch.end();
     }
 
     @Override
@@ -102,6 +138,7 @@ public class MenuScreen implements Screen {
 
     @Override
     public void dispose(){
-
+        batch.dispose();
+        textureAtlas.dispose();
     }
 }
