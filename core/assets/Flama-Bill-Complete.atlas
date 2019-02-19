@@ -1,0 +1,487 @@
+Flama-Bill-Complete.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Flama-Bill-Complete_Standing
+  rotate: false
+  xy: 0,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 0
+Flama-Bill-Complete_Standing
+  rotate: false
+  xy: 64,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 1
+Flama-Bill-Complete_Standing
+  rotate: false
+  xy: 128,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 2
+Flama-Bill-Complete_Standing
+  rotate: false
+  xy: 192,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 3
+Flama-Bill-Complete_Standing
+  rotate: false
+  xy: 256,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 4
+Flama-Bill-Complete_Standing
+  rotate: false
+  xy: 320,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 5
+Flama-Bill-Complete_Standing
+  rotate: false
+  xy: 384,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 6
+Flama-Bill-Complete_Standing
+  rotate: false
+  xy: 448,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 7
+Flama-Bill-Complete_Pimp
+  rotate: false
+  xy: 512,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 0
+Flama-Bill-Complete_Pimp
+  rotate: false
+  xy: 576,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 1
+Flama-Bill-Complete_Pimp
+  rotate: false
+  xy: 640,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 2
+Flama-Bill-Complete_Pimp
+  rotate: false
+  xy: 704,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 3
+Flama-Bill-Complete_Pimp
+  rotate: false
+  xy: 768,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 4
+Flama-Bill-Complete_Pimp
+  rotate: false
+  xy: 832,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 5
+Flama-Bill-Complete_Pimp
+  rotate: false
+  xy: 896,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 6
+Flama-Bill-Complete_Pimp
+  rotate: false
+  xy: 960,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 7
+Flama-Bill-Complete_Run
+  rotate: false
+  xy: 1024,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 0
+Flama-Bill-Complete_Run
+  rotate: false
+  xy: 1088,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 1
+Flama-Bill-Complete_Run
+  rotate: false
+  xy: 1152,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 2
+Flama-Bill-Complete_Run
+  rotate: false
+  xy: 1216,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 3
+Flama-Bill-Complete_Run
+  rotate: false
+  xy: 1280,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 4
+Flama-Bill-Complete_Run
+  rotate: false
+  xy: 1344,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 5
+Flama-Bill-Complete_Run
+  rotate: false
+  xy: 1408,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 6
+Flama-Bill-Complete_Run
+  rotate: false
+  xy: 1472,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 7
+Flama-Bill-Complete_Jump
+  rotate: false
+  xy: 1536,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 0
+Flama-Bill-Complete_Jump
+  rotate: false
+  xy: 1600,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 1
+Flama-Bill-Complete_Jump
+  rotate: false
+  xy: 1664,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 2
+Flama-Bill-Complete_Jump
+  rotate: false
+  xy: 1728,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 3
+Flama-Bill-Complete_Jump
+  rotate: false
+  xy: 1792,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 4
+Flama-Bill-Complete_Jump
+  rotate: false
+  xy: 1856,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 5
+Flama-Bill-Complete_Jump
+  rotate: false
+  xy: 1920,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 6
+Flama-Bill-Complete_Jump
+  rotate: false
+  xy: 1984,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 7
+Flama-Bill-Complete_Jump
+  rotate: false
+  xy: 2048,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 8
+Flama-Bill-Complete_Fall
+  rotate: false
+  xy: 2112,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 0
+Flama-Bill-Complete_Fall
+  rotate: false
+  xy: 2176,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 1
+Flama-Bill-Complete_Fall
+  rotate: false
+  xy: 2240,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 2
+Flama-Bill-Complete_Fall
+  rotate: false
+  xy: 2304,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 3
+Flama-Bill-Complete_Fall
+  rotate: false
+  xy: 2368,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 4
+Flama-Bill-Complete_Fall
+  rotate: false
+  xy: 2432,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 5
+Flama-Bill-Complete_Fall
+  rotate: false
+  xy: 2496,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 6
+Flama-Bill-Complete_Fall
+  rotate: false
+  xy: 2560,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 7
+Flama-Bill-Complete_Fall-Sideways
+  rotate: false
+  xy: 2624,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 0
+Flama-Bill-Complete_Fall-Sideways
+  rotate: false
+  xy: 2688,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 1
+Flama-Bill-Complete_Fall-Sideways
+  rotate: false
+  xy: 2752,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 2
+Flama-Bill-Complete_Fall-Sideways
+  rotate: false
+  xy: 2816,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 3
+Flama-Bill-Complete_Fall-Sideways
+  rotate: false
+  xy: 2880,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 4
+Flama-Bill-Complete_Fall-Sideways
+  rotate: false
+  xy: 2944,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 5
+Flama-Bill-Complete_Fall-Sideways
+  rotate: false
+  xy: 3008,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 6
+Flama-Bill-Complete_Fall-Sideways
+  rotate: false
+  xy: 3072,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 7
+Flama-Bill-Complete_Damaged
+  rotate: false
+  xy: 3136,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 0
+Flama-Bill-Complete_Damaged
+  rotate: false
+  xy: 3200,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 1
+Flama-Bill-Complete_Damaged
+  rotate: false
+  xy: 3264,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 2
+Flama-Bill-Complete_Damaged
+  rotate: false
+  xy: 3328,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 3
+Flama-Bill-Complete_Damaged
+  rotate: false
+  xy: 3392,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 4
+Flama-Bill-Complete_Damaged
+  rotate: false
+  xy: 3456,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 5
+Flama-Bill-Complete_Damaged
+  rotate: false
+  xy: 3520,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 6
+Flama-Bill-Complete_Damaged
+  rotate: false
+  xy: 3584,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 7
+Flama-Bill-Complete_Died
+  rotate: false
+  xy: 3648,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 0
+Flama-Bill-Complete_Died
+  rotate: false
+  xy: 3712,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 1
+Flama-Bill-Complete_Died
+  rotate: false
+  xy: 3776,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 2
+Flama-Bill-Complete_Died
+  rotate: false
+  xy: 3840,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 3
+Flama-Bill-Complete_Died
+  rotate: false
+  xy: 3904,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 4
+Flama-Bill-Complete_Died
+  rotate: false
+  xy: 3968,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 5
+Flama-Bill-Complete_Died
+  rotate: false
+  xy: 4032,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 6
+Flama-Bill-Complete_Died
+  rotate: false
+  xy: 4096,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 7
+Flama-Bill-Complete_Died
+  rotate: false
+  xy: 4160,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 8
+Flama-Bill-Complete_Died
+  rotate: false
+  xy: 4224,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 9
+Flama-Bill-Complete_Died
+  rotate: false
+  xy: 4288,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 10
+Flama-Bill-Complete_Died
+  rotate: false
+  xy: 4352,0
+  size: 64,64
+  orig: 64,64
+  offset: 0,0
+  index: 11
