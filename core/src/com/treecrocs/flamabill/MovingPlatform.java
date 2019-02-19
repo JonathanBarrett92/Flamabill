@@ -13,12 +13,11 @@ public class MovingPlatform
    private float width;
    private World world;
 
-   private boolean direction;
-
    private Vector2 startPos;
    private Vector2 endPos;
-   private Vector2 forwardVel = new Vector2(30, 0);
-   private Vector2 backwardVel = new Vector2(-30 , 0);
+   private Vector2 forwardVel = new Vector2(60, 0);
+   private Vector2 backwardVel = new Vector2(-60 , 0);
+   private Vector2 currentVel = new Vector2();
 
 
    public MovingPlatform(World world, float startX, float startY, float endX, float endY, float height, float width )
@@ -30,12 +29,9 @@ public class MovingPlatform
       this.height = height;
       this.width = width;
       this.world = world;
-      direction = true;
-
-
       createPlatform();
 
-      
+
    }
 
    /*
@@ -64,14 +60,24 @@ public class MovingPlatform
    {
       System.out.println("PosX: " + getPosX() + " EndPos: " + endPos.x );
       //If going forward
-      if(direction){ // && getPosX() <= endPos.x){
-         this.body.applyLinearImpulse(forwardVel, this.body.getPosition(), true);
+      this.body.setLinearVelocity(currentVel);
+      if(getPosX() >= endPos.x &&getPosY()>=endPos.y )
+      {
+         this.body.setTransform(endPos,0);
+         currentVel.x = backwardVel.x;
+         currentVel.y = backwardVel.y;
+
+
       }
-      else{
-         //this.body.setLinearVelocity(backwardVel);
+      if(getPosX()<=startPos.x&&getPosY()>=startPos.y )
+      {
+         this.body.setTransform(startPos,0);
+         currentVel.x = forwardVel.x;
+         currentVel.y = forwardVel.y;
       }
 
-      System.out.println(getPosX() + " " + getPosY());
+
+
 
    }
 
