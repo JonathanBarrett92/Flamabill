@@ -47,15 +47,17 @@ public class PlayScreen implements Screen {
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        deltaTime = Gdx.graphics.getDeltaTime();
+        //I need to use delta time but do not understand how
+        //deltaTime = Gdx.graphics.getDeltaTime();
 
         world.step(deltaTime,2,2);
         b2dr.render(world,camera.combined);
-        MovingPlatform platform = new MovingPlatform();
+
+        //creating the platform object
+       /* MovingPlatform platform = new MovingPlatform();
         platform.CreatePlatform(world,30,30,50,50);
 
-        platform.move(platform,0,15,10,deltaTime);
+        platform.move(platform,0,15,10); */
 
     }
 
