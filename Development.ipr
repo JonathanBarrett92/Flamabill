@@ -84,8 +84,6 @@
       <module fileurl="file://$PROJECT_DIR$/desktop/Flamabill.desktop.iml" filepath="$PROJECT_DIR$/desktop/Flamabill.desktop.iml" />
       <module fileurl="file://$PROJECT_DIR$/desktop/Flamabill.desktop.main.iml" filepath="$PROJECT_DIR$/desktop/Flamabill.desktop.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/desktop/Flamabill.desktop.test.iml" filepath="$PROJECT_DIR$/desktop/Flamabill.desktop.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/desktop/desktop.iml" filepath="$PROJECT_DIR$/desktop/desktop.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" project-jdk-name="1.8" project-jdk-type="JavaSDK">
