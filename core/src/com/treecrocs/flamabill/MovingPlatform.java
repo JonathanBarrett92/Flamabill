@@ -1,38 +1,86 @@
 package com.treecrocs.flamabill;
 
-import com.badlogic.gdx.math.Matrix3;
+
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.*;
 
-//moving platform is a sub class of platfrom
-public class MovingPlatform extends Platform {
-   private Vector2 dir = new Vector2();
-   //vector because theyre nice
-   private float dist;//these will be used when I can get it to update correctly
-   private float maxDist;//^^^
-   //the movement of the platform have not got it working correctly
-   //the shapes just overlap
-   public void move(Platform platform, float dx, float dy, float close) {
+public class MovingPlatform
+{
+   //variables
+   private Body body;
+   private BodyDef bdef;
+   private float height;
+   private float width;
+   private World world;
 
-      //initialising the vector
-      dir.x = dx;
-      dir.y = dy;
-      maxDist = close;
+   private boolean direction;
 
-
-      //this sets the position to where the platform will move to and from
-      //I.E. the reference object
-      platform.body.setTransform(dir, 0);
+   private Vector2 startPos;
+   private Vector2 endPos;
+   private Vector2 forwardVel = new Vector2(30, 0);
+   private Vector2 backwardVel = new Vector2(-30 , 0);
 
 
+   public MovingPlatform(World world, float startX, float startY, float endX, float endY, float height, float width )
+   {
+      startPos = new Vector2(startX, startY);
+      endPos = new Vector2(endX, endY);
+      //create a blueprint for the body and its position in the world
 
-      //this sets the speed at which the platform shall go
-      // the bigger the number the higher the speed
-      platform.body.setLinearVelocity(dir);
+      this.height = height;
+      this.width = width;
+      this.world = world;
+      direction = true;
 
+
+      createPlatform();
+
+      
+   }
+
+   /*
+      Creates the platform
+    */
+   private void createPlatform() {
+      bdef = new BodyDef();
+      bdef.position.set(startPos.x,startPos.y);
+
+      //kinematic body is needed as so it can move and be destroyed
+      bdef.type = BodyDef.BodyType.KinematicBody;
+      body = world.createBody(bdef);
+
+      //this creates the shape of the platform using input from launcher
+      PolygonShape shape = new PolygonShape();
+      shape.setAsBox(height,width);
+
+      FixtureDef fdef = new FixtureDef();
+      fdef.shape = shape;
+      body.createFixture(fdef);
+
+      //T h e    b o d y      i s      c r e a t e d
+   }
+
+   public void move()
+   {
+      System.out.println("PosX: " + getPosX() + " EndPos: " + endPos.x );
+      //If going forward
+      if(direction){ // && getPosX() <= endPos.x){
+         this.body.applyLinearImpulse(forwardVel, this.body.getPosition(), true);
+      }
+      else{
+         //this.body.setLinearVelocity(backwardVel);
+      }
+
+      System.out.println(getPosX() + " " + getPosY());
 
    }
 
+   public float getPosX(){
+      return this.body.getPosition().x;
+   }
 
-
+   public float getPosY(){
+      return this.body.getPosition().y;
+   }
 
 }
