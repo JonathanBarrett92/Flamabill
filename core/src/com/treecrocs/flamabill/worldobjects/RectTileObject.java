@@ -1,4 +1,4 @@
-package com.treecrocs.flamabill.sprites;
+package com.treecrocs.flamabill.worldobjects;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;

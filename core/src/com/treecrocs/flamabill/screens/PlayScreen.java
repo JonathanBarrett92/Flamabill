@@ -17,7 +17,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.treecrocs.flamabill.Flamabill;
-import com.treecrocs.flamabill.tools.B2WorldLoader;
+import com.treecrocs.flamabill.tools.WorldGenerator;
 
 public class PlayScreen implements Screen {
 
@@ -64,7 +64,7 @@ public class PlayScreen implements Screen {
         b2dr = new Box2DDebugRenderer();
 
         // Loads in the objects
-        new B2WorldLoader(world, map);
+        new WorldGenerator(world, map);
     }
 
     public World getWorld(){
