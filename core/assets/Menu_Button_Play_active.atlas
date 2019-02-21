@@ -1,0 +1,32 @@
+Menu_Button_Play_active.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Menu_Button_Play_active 1
+  rotate: false
+  xy: 0,0
+  size: 64,32
+  orig: 64,32
+  offset: 0,0
+  index: -1
+Menu_Button_Play_active 2
+  rotate: false
+  xy: 64,0
+  size: 64,32
+  orig: 64,32
+  offset: 0,0
+  index: -1
+Menu_Button_Play_active 3
+  rotate: false
+  xy: 128,0
+  size: 64,32
+  orig: 64,32
+  offset: 0,0
+  index: -1
+Menu_Button_Play_active 4
+  rotate: false
+  xy: 192,0
+  size: 64,32
+  orig: 64,32
+  offset: 0,0
+  index: -1
