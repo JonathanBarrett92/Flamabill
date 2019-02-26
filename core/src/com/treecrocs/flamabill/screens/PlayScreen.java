@@ -50,7 +50,7 @@ public class PlayScreen implements Screen {
 
         // Load map and set up renderer
         maploader = new TmxMapLoader();
-        map = maploader.load("../../stuff/Tiled/testmap2.tmx");
+        map = maploader.load("../../stuff/Tiled/map1.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / Flamabill.PPM);
 
         // Center the camera correctly at the start
