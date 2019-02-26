@@ -21,6 +21,11 @@ public class MenuScreen implements Screen {
     private static final int PlayButtonY = Flamabill.V_HEIGHT / 2 - 100;
     private static final int QuitButtonY = (Flamabill.V_HEIGHT /2) - (Button_Height + 25) - 100;
 
+    private static final int QuitX = ((Flamabill.V_WIDTH/2) - (Button_Width/2)) + (Button_Width/2) -15;
+    private static final int PlayX = ((Flamabill.V_WIDTH/2) - (Button_Width/2)) + (Button_Width/2) -15;
+    private static final int QuitY = (Flamabill.V_HEIGHT /2) - (Button_Height + 25) - (Button_Height/2) +5;
+    private static final int PlayY = PlayButtonY+50;
+
     private SpriteBatch batch;
     private SpriteBatch buttonBatch;
     private TextureAtlas textureAtlas;
@@ -47,6 +52,7 @@ public class MenuScreen implements Screen {
 
     public MenuScreen(Flamabill game){
         this.game = game;
+        BitmapFont font = new BitmapFont();
 
         //shows the app what to images to call and use from Assets, placeholders at the minute I'll update them once we get this going properly
         PlayButtonInactive = new Texture("Menu_Button_Play_Inactive.png");
@@ -119,6 +125,8 @@ public class MenuScreen implements Screen {
     @Override
     public void render(float delta){
 //52.9, 80.8, 92.2
+
+        BitmapFont font = new BitmapFont();
         Gdx.gl.glClearColor(52.9f/255f, 80.8f/255f, 92.2f/255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
@@ -132,7 +140,7 @@ public class MenuScreen implements Screen {
             elapsedTime += Gdx.graphics.getDeltaTime();
             batch.draw((TextureRegion) ButtonActive.getKeyFrame(elapsedTime, true),  x, PlayButtonY, Button_Width, Button_Height);
             batch.draw(QuitButtonInactive, x, QuitButtonY, Button_Width, Button_Height);
-            
+
             batch.end();
 
             //Changes game screen to the actual game, passes that on to Damo i think
@@ -143,6 +151,7 @@ public class MenuScreen implements Screen {
             } else
             {
                 game.batch.draw(PlayButtonInactive, x, PlayButtonY, Button_Width, Button_Height);
+
             }
 
         //Quit button code for positioning and telling it what to do when hovered or clicked
@@ -161,14 +170,19 @@ public class MenuScreen implements Screen {
         } else
         {
             game.batch.draw(QuitButtonInactive, x, QuitButtonY, Button_Width, Button_Height);
+
         }
 
         game.batch.end();
 
+        batch.begin();
+        font.draw(batch, "Play", PlayX,  PlayY);
+        font.draw(batch, "Quit", QuitX, QuitY);
+        batch.end();
+
 
 
         batch.begin();
-        //sprite.draw(batch);
         elapsedTime += Gdx.graphics.getDeltaTime();
         batch.draw((TextureRegion) logoAnimation2.getKeyFrame(elapsedTime, false), (Flamabill.V_WIDTH/2) - (160), 300);
         if(logoAnimation2.isAnimationFinished(elapsedTime))
