@@ -29,6 +29,8 @@ public class Player extends Sprite {
     private Animation<TextureRegion> damaged;
     private Animation<TextureRegion> deathAnim;
 
+    private boolean isRunningRight;
+
     private Fixture playerPhysicsFixture;
     private Fixture playerSensorFixture;
 
@@ -40,7 +42,7 @@ public class Player extends Sprite {
 
     private TextureAtlas atlas;
 
-    private int stateTime = 0;
+    private float stateTime = 0;
 
     public Player(PlayScreen playScreen, CharacterController controller){
 
@@ -51,25 +53,65 @@ public class Player extends Sprite {
 
         currentState = PlayerState.IDLE;
         previousState = PlayerState.IDLE;
+        isRunningRight = true;
 
 
         /*
             Creating all textures from Atlas
          */
         Array<TextureRegion> frames = new Array<TextureRegion>();
+
+        //Load Idle
         for (int i = 0; i < 8; i++){
             frames.add(new TextureRegion(playScreen.getAtlas().findRegion("Flama-Bill-Complete_Standing_" + i), 0, 0, 64, 64));
         }
         idle = new Animation<TextureRegion>(0.3f, frames);
         frames.clear();
 
-        setBounds(512,512,64/Flamabill.PPM,64/Flamabill.PPM);
-        setRegion(idle.getKeyFrame(1,true));
-        //setRegion(idle.getKeyFrame(stateTime), true);
-        setRegion(idle.getKeyFrame(stateTime));
+        //Load Running
+        for (int i = 0; i < 8; i++){
+            frames.add(new TextureRegion(playScreen.getAtlas().findRegion("Flama-Bill-Complete_Run_" + i), 1536, 0, 64, 64));
+        }
+        running = new Animation<TextureRegion>(0.3f, frames);
+        frames.clear();
+
+        setBounds(512/Flamabill.PPM,512/Flamabill.PPM,64/Flamabill.PPM,64/Flamabill.PPM);
+        setRegion(idle.getKeyFrame(stateTime, true));
 
 
 
+    }
+
+    public TextureRegion getFrame(float dt){
+        currentState = getState();
+        TextureRegion region;
+
+        switch (currentState){
+            case RUNNING:
+                region = running.getKeyFrame(stateTime, true);
+                break;
+            default:
+                region = idle.getKeyFrame(stateTime, true);
+        }
+
+        //if player is running left and the texture isn't facing left... flip it.
+        if ((b2d.getLinearVelocity().x < 0 || !isRunningRight) && !region.isFlipX()) {
+            region.flip(true, false);
+            isRunningRight = false;
+        }
+        //if player is running right and the texture isn't facing right... flip it.
+        else if((b2d.getLinearVelocity().x > 0 || isRunningRight) && region.isFlipX()){
+            region.flip(true, false);
+            isRunningRight = true;
+        }
+
+        //if the current state is the same as the previous state increase the state timer.
+        //otherwise the state has changed and we need to reset timer.
+        stateTime = currentState == previousState ? stateTime + dt : 0;
+        //update previous state
+        previousState = currentState;
+        //return our final adjusted frame
+        return region;
     }
 
 
@@ -89,8 +131,9 @@ public class Player extends Sprite {
     }
 
     public void update(float dt){
-        setPosition(this.b2d.getPosition().x - getWidth() / 2, this.b2d.getPosition().y - getHeight() / 3);
-        //setRegion(getFrame(dt));
+        setPosition((b2d.getPosition().x - getWidth() / 2)/Flamabill.PPM, (b2d.getPosition().y - getHeight() / 3)/Flamabill.PPM);
+        b2d.setTransform(b2d.getPosition(), 0);
+        setRegion(getFrame(dt));
     }
 
     public void determineMovement(float dt){
@@ -134,17 +177,15 @@ public class Player extends Sprite {
         groundSens.setPosition(new Vector2(0, -32f/Flamabill.PPM));
         playerSensorFixture = b2d.createFixture(groundSens, 0);
 
-        
+
         boxDef.filter.categoryBits = EntityCategory.PLAYER.getFilter();
         sensorDefinition.filter.categoryBits = EntityCategory.SENSOR.getFilter();
 
         boxDef.density = 0;
 
-
         boxDef.shape = playerBox;
         sensorDefinition.shape = groundSens;
         sensorDefinition.isSensor = true;
-
 
         b2d.createFixture(boxDef).setUserData(this);
         b2d.createFixture(sensorDefinition).setUserData(this);

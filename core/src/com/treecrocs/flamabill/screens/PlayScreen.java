@@ -140,20 +140,6 @@ public class PlayScreen implements Screen {
 
     }
 
-//    public void tempHandleControls(float dt){
-//        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-//            player.b2d.applyLinearImpulse(new Vector2(0, 0.2f), player.b2d.getWorldCenter(), true);
-//        }
-//        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2d.getLinearVelocity().x <= 6) {
-//            //player.b2d.setLinearVelocity(new Vector2(0.2f, 0f));
-//            player.b2d.applyLinearImpulse(new Vector2(0.2f, 0f), player.b2d.getWorldCenter(), true);
-//        }
-//        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2d.getLinearVelocity().x >= -6) {
-//            //player.b2d.setLinearVelocity(new Vector2(0.2f, 0f));
-//            player.b2d.applyLinearImpulse(new Vector2(-0.2f, 0f), player.b2d.getWorldCenter(), true);
-//        }
-//    }
-
     public TextureAtlas getAtlas(){
         return atlas;
     }
