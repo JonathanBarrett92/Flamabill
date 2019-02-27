@@ -7,5 +7,5 @@ public enum PlayerState {
     FALLING,
     FALLINGSIDEWAYS,
     DAMAGED,
-    DEAD
+    DEAD;
 }

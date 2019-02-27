@@ -1,8 +1,6 @@
 package com.treecrocs.flamabill.screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -12,22 +10,21 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.treecrocs.flamabill.Flamabill;
+import com.treecrocs.flamabill.characters.CharacterController;
+import com.treecrocs.flamabill.characters.Player;
 import com.treecrocs.flamabill.tools.WorldGenerator;
 
 public class PlayScreen implements Screen {
 
     private OrthographicCamera camera;
-    //private ExtendViewport viewport;
     private FitViewport viewport;
     private Flamabill game;
-    //private Player player;
+    private Player player;
     private TextureAtlas atlas;
-
+    private Hud hud;
     private World world;
 
     // Debug renderer gives outlines to the objects
@@ -36,14 +33,16 @@ public class PlayScreen implements Screen {
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
 
+    private CharacterController controller;
+
     public PlayScreen (Flamabill game){
         this.game = game;
 
-        // Camera and viewport
         // Create world object with -9.8g in Y axis
         this.world = new World(new Vector2(0f,-9.80f), true);
 
-        //atlas = new TextureAtlas("atlas.atlas");
+        atlas = new TextureAtlas(Gdx.files.internal("Flama-Bill-Complete.atlas"));
+        hud = new Hud(game.batch);
 
         camera = new OrthographicCamera();
         viewport = new FitViewport(Flamabill.V_WIDTH / Flamabill.PPM,Flamabill.V_HEIGHT / Flamabill.PPM, camera);
@@ -63,8 +62,12 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0, -10f), true);
         b2dr = new Box2DDebugRenderer();
 
+        controller = new CharacterController();
+        player = new Player(this, controller);
+
         // Loads in the objects
         new WorldGenerator(world, map);
+
     }
 
     public World getWorld(){
@@ -73,45 +76,20 @@ public class PlayScreen implements Screen {
 
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(controller);
     }
 
     // Updates camera position
     public void update(float dt) {
         world.step(1/60f, 6, 2);
 
-        /*
+
         // player's body becomes the center of the camera position
-        camera.position.x = player.b2body.getPosition().x;
-        */
+        camera.position.x = player.b2d.getPosition().x;
+        camera.position.y = player.b2d.getPosition().y;
 
-        // Player Movement
-        /*
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            player.b2body.applyLinearImpulse(new Vector2(0, 8f), player.b2body.getWorldCenter(), true);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 6) {
-            player.b2body.applyLinearImpulse(new Vector2(0.2f, 0f), player.b2body.getWorldCenter(), true);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -6) {
-            player.b2body.applyLinearImpulse(new Vector2(-0.2f, 0f), player.b2body.getWorldCenter(), true);
-        }
-        */
-
-        // navigate on map with arrow keys
-        float moveBy = dt * 300 / Flamabill.PPM;
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            camera.position.y += moveBy;
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            camera.position.y -= moveBy;
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            camera.position.x += moveBy;
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            camera.position.x -= moveBy;
-        }
+        player.determineMovement(dt);
+        player.update(dt);
 
         camera.update();
         // renderer will only draw what the camera can see in the game world
@@ -131,19 +109,9 @@ public class PlayScreen implements Screen {
 
         b2dr.render(world, camera.combined);
 
-        /*
-        game.batch.setProjectionMatrix(camera.combined);
-        game.batch.begin();
-        // Loading Player
-        // player.draw(game.batch);
-        game.batch.end();
-        */
-
-        // Hud stuff
-        /*
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
-        */
+
     }
 
     @Override
@@ -170,5 +138,23 @@ public class PlayScreen implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+//    public void tempHandleControls(float dt){
+//        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+//            player.b2d.applyLinearImpulse(new Vector2(0, 0.2f), player.b2d.getWorldCenter(), true);
+//        }
+//        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2d.getLinearVelocity().x <= 6) {
+//            //player.b2d.setLinearVelocity(new Vector2(0.2f, 0f));
+//            player.b2d.applyLinearImpulse(new Vector2(0.2f, 0f), player.b2d.getWorldCenter(), true);
+//        }
+//        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2d.getLinearVelocity().x >= -6) {
+//            //player.b2d.setLinearVelocity(new Vector2(0.2f, 0f));
+//            player.b2d.applyLinearImpulse(new Vector2(-0.2f, 0f), player.b2d.getWorldCenter(), true);
+//        }
+//    }
+
+    public TextureAtlas getAtlas(){
+        return atlas;
     }
 }

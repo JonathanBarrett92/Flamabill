@@ -24,8 +24,6 @@ public class Flamabill extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 		setScreen(new MenuScreen(this));
-		//img = new Texture("badlogic.jpg");
-
 	}
 
 	@Override
