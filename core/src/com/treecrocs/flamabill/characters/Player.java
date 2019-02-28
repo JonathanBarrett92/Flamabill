@@ -52,53 +52,28 @@ public class Player extends Sprite {
         previousState = PlayerState.IDLE;
         isRunningLeft = true;
 
+        idle = createAnimation("Flama-Bill-Complete_Standing_", 8, 0.2f);
+        running = createAnimation("Flama-Bill-Complete_Run_", 8, 0.1f);
+        jumping = createAnimation("Flama-Bill-Complete_Jump_", 8, 0.1f);
+        falling = createAnimation("Flama-Bill-Complete_Fall_", 8,0.1f);
+        fallingSideways = createAnimation("Flama-Bill-Complete_Fall-Sideways_", 7, 0.2f);
 
-
-        /*
-            Creating all textures from Atlas
-         */
-        Array<TextureRegion> frames = new Array<TextureRegion>();
-        frames.clear();
-
-        //Load Idle
-        for (int i = 0; i < 8; i++){
-            frames.add(new TextureRegion(playScreen.getAtlas().findRegion("Flama-Bill-Complete_Standing_" + i), 0, 0, 96, 64));
-        }
-        idle = new Animation<TextureRegion>(0.3f, frames);
-        frames.clear();
-
-        //Load Jumping
-        for (int i = 0; i < 8; i++){
-            frames.add(new TextureRegion(playScreen.getAtlas().findRegion("Flama-Bill-Complete_Jump_" + i), 0, 0, 96, 64));
-        }
-        jumping = new Animation<TextureRegion>(0.3f, frames);
-        frames.clear();
-
-        //Load Running
-        for (int i = 0; i < 8; i++){
-            frames.add(new TextureRegion(playScreen.getAtlas().findRegion("Flama-Bill-Complete_Run_" + i), 0, 0, 96, 64));
-        }
-        running = new Animation<TextureRegion>(0.1f, frames);
-        frames.clear();
-
-        //Load falling
-        for (int i = 0; i < 8; i++){
-            frames.add(new TextureRegion(playScreen.getAtlas().findRegion("Flama-Bill-Complete_Fall_" + i), 0, 0, 96, 64));
-        }
-        falling = new Animation<TextureRegion>(0.3f, frames);
-        frames.clear();
-
-        //Load falling sideways
-        for (int i = 0; i < 7; i++){
-            frames.add(new TextureRegion(playScreen.getAtlas().findRegion("Flama-Bill-Complete_Fall-Sideways_" + i), 0, 0, 96, 64));
-        }
-        fallingSideways = new Animation<TextureRegion>(0.3f, frames);
-        frames.clear();
-
+        //Initial values set.
         setBounds(512/Flamabill.PPM,512/Flamabill.PPM,96/Flamabill.PPM, 64/Flamabill.PPM);
         setRegion(idle.getKeyFrame(stateTime, true));
 
+    }
 
+
+    /*
+        @desc: Custom function created to take regions of an Atlas and process it into an Animation
+     */
+    private Animation<TextureRegion> createAnimation(String atlasString, int noOfFrames, float duration){
+        Array<TextureRegion> frames = new Array<TextureRegion>();
+        for (int i = 0; i < noOfFrames; i++){
+            frames.add(new TextureRegion(playScreen.getAtlas().findRegion(atlasString + i), 0, 0, 96, 64));
+        }
+        return new Animation<TextureRegion>(duration, frames);
     }
 
     public TextureRegion getFrame(float dt){
@@ -144,10 +119,11 @@ public class Player extends Sprite {
 
 
     public PlayerState getState(){
-        if (this.b2d.getLinearVelocity().y > 0.5 || (this.b2d.getLinearVelocity().y < 0.2 && previousState == PlayerState.JUMPING)){
+
+        if (this.b2d.getLinearVelocity().y > 0.4f || (this.b2d.getLinearVelocity().y < 0.2f && previousState == PlayerState.JUMPING)){
             return PlayerState.JUMPING;
         }
-        else if (this.b2d.getLinearVelocity().y < 0 && this.b2d.getLinearVelocity().x < 0.5){
+        else if (this.b2d.getLinearVelocity().y < 0 && this.b2d.getLinearVelocity().x < 1f && this.b2d.getLinearVelocity().x > -1f){
             return PlayerState.FALLING;
         }
         else if (this.b2d.getLinearVelocity().y < 0){
@@ -171,6 +147,7 @@ public class Player extends Sprite {
         //System.out.println(this.currentState);
         //System.out.println(getRegionX() + " " + getRegionY());
         //System.out.println(getFrame(dt));
+        //System.out.println(this.b2d.getLinearVelocity().x + " " + this.b2d.getLinearVelocity().y);
     }
 
     public void determineMovement(float dt){
