@@ -3,10 +3,7 @@ package com.treecrocs.flamabill.characters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
@@ -29,7 +26,7 @@ public class Player extends Sprite {
     private Animation<TextureRegion> damaged;
     private Animation<TextureRegion> deathAnim;
 
-    private boolean isRunningRight;
+    private boolean isRunningLeft;
 
     private Fixture playerPhysicsFixture;
     private Fixture playerSensorFixture;
@@ -53,31 +50,53 @@ public class Player extends Sprite {
 
         currentState = PlayerState.IDLE;
         previousState = PlayerState.IDLE;
-        isRunningRight = true;
+        isRunningLeft = true;
+
 
 
         /*
             Creating all textures from Atlas
          */
         Array<TextureRegion> frames = new Array<TextureRegion>();
+        frames.clear();
 
         //Load Idle
         for (int i = 0; i < 8; i++){
-            frames.add(new TextureRegion(playScreen.getAtlas().findRegion("Flama-Bill-Complete_Standing_" + i), 0, 0, 64, 64));
+            frames.add(new TextureRegion(playScreen.getAtlas().findRegion("Flama-Bill-Complete_Standing_" + i), 0, 0, 96, 64));
         }
         idle = new Animation<TextureRegion>(0.3f, frames);
         frames.clear();
 
-        //Load Running
+        //Load Jumping
         for (int i = 0; i < 8; i++){
-            frames.add(new TextureRegion(playScreen.getAtlas().findRegion("Flama-Bill-Complete_Run_" + i), 1536, 0, 64, 64));
+            frames.add(new TextureRegion(playScreen.getAtlas().findRegion("Flama-Bill-Complete_Jump_" + i), 0, 0, 96, 64));
         }
-        running = new Animation<TextureRegion>(0.3f, frames);
+        jumping = new Animation<TextureRegion>(0.3f, frames);
         frames.clear();
 
-        setBounds(512/Flamabill.PPM,512/Flamabill.PPM,64/Flamabill.PPM,64/Flamabill.PPM);
-        setRegion(idle.getKeyFrame(stateTime, true));
+        //Load Running
+        for (int i = 0; i < 8; i++){
+            frames.add(new TextureRegion(playScreen.getAtlas().findRegion("Flama-Bill-Complete_Run_" + i), 0, 0, 96, 64));
+        }
+        running = new Animation<TextureRegion>(0.1f, frames);
+        frames.clear();
 
+        //Load falling
+        for (int i = 0; i < 8; i++){
+            frames.add(new TextureRegion(playScreen.getAtlas().findRegion("Flama-Bill-Complete_Fall_" + i), 0, 0, 96, 64));
+        }
+        falling = new Animation<TextureRegion>(0.3f, frames);
+        frames.clear();
+
+        //Load falling sideways
+        for (int i = 0; i < 7; i++){
+            frames.add(new TextureRegion(playScreen.getAtlas().findRegion("Flama-Bill-Complete_Fall-Sideways_" + i), 0, 0, 96, 64));
+        }
+        fallingSideways = new Animation<TextureRegion>(0.3f, frames);
+        frames.clear();
+
+        setBounds(512/Flamabill.PPM,512/Flamabill.PPM,96/Flamabill.PPM, 64/Flamabill.PPM);
+        setRegion(idle.getKeyFrame(stateTime, true));
 
 
     }
@@ -90,19 +109,28 @@ public class Player extends Sprite {
             case RUNNING:
                 region = running.getKeyFrame(stateTime, true);
                 break;
+            case JUMPING:
+                region = jumping.getKeyFrame(stateTime, false);
+                break;
+            case FALLING:
+                region = falling.getKeyFrame(stateTime, true);
+                break;
+            case FALLINGSIDEWAYS:
+                region = fallingSideways.getKeyFrame(stateTime, true);
+                break;
             default:
                 region = idle.getKeyFrame(stateTime, true);
         }
 
         //if player is running left and the texture isn't facing left... flip it.
-        if ((b2d.getLinearVelocity().x < 0 || !isRunningRight) && !region.isFlipX()) {
+        if ((b2d.getLinearVelocity().x > 0 || !isRunningLeft) && !region.isFlipX()) {
             region.flip(true, false);
-            isRunningRight = false;
+            isRunningLeft = false;
         }
         //if player is running right and the texture isn't facing right... flip it.
-        else if((b2d.getLinearVelocity().x > 0 || isRunningRight) && region.isFlipX()){
+        else if((b2d.getLinearVelocity().x < 0 || isRunningLeft) && region.isFlipX()){
             region.flip(true, false);
-            isRunningRight = true;
+            isRunningLeft = true;
         }
 
         //if the current state is the same as the previous state increase the state timer.
@@ -116,11 +144,14 @@ public class Player extends Sprite {
 
 
     public PlayerState getState(){
-        if (this.b2d.getLinearVelocity().y > 0 || (this.b2d.getLinearVelocity().y < 0 && previousState == PlayerState.JUMPING)){
+        if (this.b2d.getLinearVelocity().y > 0.5 || (this.b2d.getLinearVelocity().y < 0.2 && previousState == PlayerState.JUMPING)){
             return PlayerState.JUMPING;
         }
-        else if (this.b2d.getLinearVelocity().y < 0){
+        else if (this.b2d.getLinearVelocity().y < 0 && this.b2d.getLinearVelocity().x < 0.5){
             return PlayerState.FALLING;
+        }
+        else if (this.b2d.getLinearVelocity().y < 0){
+            return PlayerState.FALLINGSIDEWAYS;
         }
         else if (this.b2d.getLinearVelocity().x != 0){
             return PlayerState.RUNNING;
@@ -131,9 +162,15 @@ public class Player extends Sprite {
     }
 
     public void update(float dt){
-        setPosition((b2d.getPosition().x - getWidth() / 2)/Flamabill.PPM, (b2d.getPosition().y - getHeight() / 3)/Flamabill.PPM);
+        setPosition(b2d.getPosition().x - getWidth()/2, b2d.getPosition().y - getHeight()/2);
+        //setPosition(b2d.getPosition().x - getWidth(), b2d.getPosition().y - getHeight() / 3);
         b2d.setTransform(b2d.getPosition(), 0);
-        setRegion(getFrame(dt));
+        this.setRegion(getFrame(dt));
+        this.playerSensorFixture.setFriction(10f);
+
+        //System.out.println(this.currentState);
+        //System.out.println(getRegionX() + " " + getRegionY());
+        //System.out.println(getFrame(dt));
     }
 
     public void determineMovement(float dt){
@@ -142,11 +179,12 @@ public class Player extends Sprite {
         }
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && b2d.getLinearVelocity().x <= 6) {
             //player.b2d.setLinearVelocity(new Vector2(0.2f, 0f));
-            b2d.applyLinearImpulse(new Vector2(0.2f, 0f), b2d.getWorldCenter(), true);
+            b2d.applyLinearImpulse(new Vector2(0.1f, 0f), b2d.getWorldCenter(), true);
+            //b2d.setLinearVelocity(new Vector2(1.8f, 0f));
         }
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && b2d.getLinearVelocity().x >= -6) {
-            //player.b2d.setLinearVelocity(new Vector2(0.2f, 0f));
-            b2d.applyLinearImpulse(new Vector2(-0.2f, 0f), b2d.getWorldCenter(), true);
+            //b2d.setLinearVelocity(new Vector2(-1.8f, 0f));
+            b2d.applyLinearImpulse(new Vector2(-0.1f, 0f), b2d.getWorldCenter(), true);
         }
 
     }
@@ -154,9 +192,9 @@ public class Player extends Sprite {
     private void createPlayerBody(int spawnX, int spawnY) {
         /*
             TODO:
-                - Make proper rect and circle combo
                 - Bitmask filtering
                 - Update spawn position based on checkpoints
+                - Order code properly into groups
          */
         BodyDef def = new BodyDef();
 
@@ -164,32 +202,40 @@ public class Player extends Sprite {
         def.type = BodyDef.BodyType.DynamicBody;
         b2d = world.createBody(def);
 
-        FixtureDef boxDef = new FixtureDef();
+        //FixtureDef boxDef = new FixtureDef();
         FixtureDef sensorDefinition = new FixtureDef();
 
 
-        PolygonShape playerBox = new PolygonShape();
-        playerBox.setAsBox(16/Flamabill.PPM, 32/Flamabill.PPM);
-        playerPhysicsFixture = b2d.createFixture(playerBox, 1);
+//        PolygonShape playerBox = new PolygonShape();
+//        playerBox.setAsBox(16/Flamabill.PPM, 16/Flamabill.PPM);
+//        playerPhysicsFixture = b2d.createFixture(playerBox, 1);
 
         CircleShape groundSens = new CircleShape();
-        groundSens.setRadius(16 / Flamabill.PPM);
-        groundSens.setPosition(new Vector2(0, -32f/Flamabill.PPM));
-        playerSensorFixture = b2d.createFixture(groundSens, 0);
+        groundSens.setRadius(15 / Flamabill.PPM);
+        groundSens.setPosition(new Vector2(0, -16f/Flamabill.PPM));
+        playerSensorFixture = b2d.createFixture(groundSens, 1);
 
 
-        boxDef.filter.categoryBits = EntityCategory.PLAYER.getFilter();
+
+        //boxDef.filter.categoryBits = EntityCategory.PLAYER.getFilter();
         sensorDefinition.filter.categoryBits = EntityCategory.SENSOR.getFilter();
 
-        boxDef.density = 0;
+        //boxDef.density = 0;
 
-        boxDef.shape = playerBox;
+        //boxDef.shape = playerBox;
         sensorDefinition.shape = groundSens;
         sensorDefinition.isSensor = true;
-
-        b2d.createFixture(boxDef).setUserData(this);
+        sensorDefinition.density = 1f;
+        sensorDefinition.restitution = 0f;
+        sensorDefinition.friction = 100f;
+        //b2d.createFixture(boxDef).setUserData(this);
         b2d.createFixture(sensorDefinition).setUserData(this);
+        b2d.setBullet(true);
+
+        groundSens.dispose();
     }
 
-
+    public float getStateTime() {
+        return stateTime;
+    }
 }

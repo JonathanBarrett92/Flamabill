@@ -1,13 +1,22 @@
 package com.treecrocs.flamabill.tools;
 
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.Manifold;
+import com.badlogic.gdx.physics.box2d.*;
 
 public class WorldContactListener implements ContactListener {
+
+
     @Override
     public void beginContact(Contact contact) {
+        Fixture fixA = contact.getFixtureA();
+        Fixture fixB = contact.getFixtureB();
+
+        int cDef = fixA.getFilterData().categoryBits | fixB.getFilterData().categoryBits;
+
+        switch (cDef){
+            //TODO: Fix this
+            //case EntityCategory.PLAYER.getFilter() | EntityCategory.DEATH.getFilter():
+
+        }
 
     }
 

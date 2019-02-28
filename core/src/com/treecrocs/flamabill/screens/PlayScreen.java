@@ -70,10 +70,6 @@ public class PlayScreen implements Screen {
 
     }
 
-    public World getWorld(){
-        return this.world;
-    }
-
     @Override
     public void show() {
         Gdx.input.setInputProcessor(controller);
@@ -87,6 +83,7 @@ public class PlayScreen implements Screen {
         // player's body becomes the center of the camera position
         camera.position.x = player.b2d.getPosition().x;
         camera.position.y = player.b2d.getPosition().y;
+
 
         player.determineMovement(dt);
         player.update(dt);
@@ -109,8 +106,17 @@ public class PlayScreen implements Screen {
 
         b2dr.render(world, camera.combined);
 
+
+        game.batch.setProjectionMatrix(camera.combined);
+        game.batch.begin();
+        //game.batch.draw(player, (player.b2d.getPosition().x) + (Flamabill.V_WIDTH/2f), player.b2d.getPosition().y + (Flamabill.V_HEIGHT/2f), 64/Flamabill.PPM, 64/Flamabill.PPM);
+
+        player.draw(game.batch);
+        game.batch.end();
+
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
+
 
     }
 
@@ -142,5 +148,10 @@ public class PlayScreen implements Screen {
 
     public TextureAtlas getAtlas(){
         return atlas;
+    }
+
+
+    public World getWorld(){
+        return this.world;
     }
 }

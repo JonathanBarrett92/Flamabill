@@ -1,487 +1,487 @@
 Flama-Bill-Complete.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
 Flama-Bill-Complete_Standing_0
   rotate: false
   xy: 0,0
-  size: 64,64
-  orig: 64,64
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 0
 Flama-Bill-Complete_Standing_1
   rotate: false
-  xy: 64,0
-  size: 64,64
-  orig: 64,64
+  xy: 96,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 1
 Flama-Bill-Complete_Standing_2
   rotate: false
-  xy: 128,0
-  size: 64,64
-  orig: 64,64
+  xy: 192,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 2
 Flama-Bill-Complete_Standing_3
   rotate: false
-  xy: 192,0
-  size: 64,64
-  orig: 64,64
+  xy: 288,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 3
 Flama-Bill-Complete_Standing_4
   rotate: false
-  xy: 256,0
-  size: 64,64
-  orig: 64,64
+  xy: 384,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 4
 Flama-Bill-Complete_Standing_5
   rotate: false
-  xy: 320,0
-  size: 64,64
-  orig: 64,64
+  xy: 480,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 5
 Flama-Bill-Complete_Standing_6
   rotate: false
-  xy: 384,0
-  size: 64,64
-  orig: 64,64
+  xy: 576,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 6
 Flama-Bill-Complete_Standing_7
   rotate: false
-  xy: 448,0
-  size: 64,64
-  orig: 64,64
+  xy: 672,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 7
-Flama-Bill-Complete_Pimp_0
-  rotate: false
-  xy: 512,0
-  size: 64,64
-  orig: 64,64
-  offset: 0,0
-  index: 0
-Flama-Bill-Complete_Pimp_1
-  rotate: false
-  xy: 576,0
-  size: 64,64
-  orig: 64,64
-  offset: 0,0
-  index: 1
-Flama-Bill-Complete_Pimp_2
-  rotate: false
-  xy: 640,0
-  size: 64,64
-  orig: 64,64
-  offset: 0,0
-  index: 2
-Flama-Bill-Complete_Pimp_3
-  rotate: false
-  xy: 704,0
-  size: 64,64
-  orig: 64,64
-  offset: 0,0
-  index: 3
-Flama-Bill-Complete_Pimp_4
+Flama-Bill-Complete_Pimp
   rotate: false
   xy: 768,0
-  size: 64,64
-  orig: 64,64
+  size: 96,64
+  orig: 96,64
   offset: 0,0
-  index: 4
-Flama-Bill-Complete_Pimp_5
+  index: 0
+Flama-Bill-Complete_Pimp
   rotate: false
-  xy: 832,0
-  size: 64,64
-  orig: 64,64
+  xy: 864,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
-  index: 5
-Flama-Bill-Complete_Pimp_6
-  rotate: false
-  xy: 896,0
-  size: 64,64
-  orig: 64,64
-  offset: 0,0
-  index: 6
-Flama-Bill-Complete_Pimp_7
+  index: 1
+Flama-Bill-Complete_Pimp
   rotate: false
   xy: 960,0
-  size: 64,64
-  orig: 64,64
+  size: 96,64
+  orig: 96,64
+  offset: 0,0
+  index: 2
+Flama-Bill-Complete_Pimp
+  rotate: false
+  xy: 1056,0
+  size: 96,64
+  orig: 96,64
+  offset: 0,0
+  index: 3
+Flama-Bill-Complete_Pimp
+  rotate: false
+  xy: 1152,0
+  size: 96,64
+  orig: 96,64
+  offset: 0,0
+  index: 4
+Flama-Bill-Complete_Pimp
+  rotate: false
+  xy: 1248,0
+  size: 96,64
+  orig: 96,64
+  offset: 0,0
+  index: 5
+Flama-Bill-Complete_Pimp
+  rotate: false
+  xy: 1344,0
+  size: 96,64
+  orig: 96,64
+  offset: 0,0
+  index: 6
+Flama-Bill-Complete_Pimp
+  rotate: false
+  xy: 1440,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 7
 Flama-Bill-Complete_Run_0
   rotate: false
-  xy: 1024,0
-  size: 64,64
-  orig: 64,64
+  xy: 1536,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 0
 Flama-Bill-Complete_Run_1
   rotate: false
-  xy: 1088,0
-  size: 64,64
-  orig: 64,64
+  xy: 1632,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 1
 Flama-Bill-Complete_Run_2
   rotate: false
-  xy: 1152,0
-  size: 64,64
-  orig: 64,64
+  xy: 1728,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 2
 Flama-Bill-Complete_Run_3
   rotate: false
-  xy: 1216,0
-  size: 64,64
-  orig: 64,64
+  xy: 1824,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 3
 Flama-Bill-Complete_Run_4
   rotate: false
-  xy: 1280,0
-  size: 64,64
-  orig: 64,64
+  xy: 1920,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 4
 Flama-Bill-Complete_Run_5
   rotate: false
-  xy: 1344,0
-  size: 64,64
-  orig: 64,64
+  xy: 2016,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 5
 Flama-Bill-Complete_Run_6
   rotate: false
-  xy: 1408,0
-  size: 64,64
-  orig: 64,64
+  xy: 2112,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 6
 Flama-Bill-Complete_Run_7
   rotate: false
-  xy: 1472,0
-  size: 64,64
-  orig: 64,64
+  xy: 2208,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 7
 Flama-Bill-Complete_Jump_0
   rotate: false
-  xy: 1536,0
-  size: 64,64
-  orig: 64,64
+  xy: 2304,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 0
 Flama-Bill-Complete_Jump_1
   rotate: false
-  xy: 1600,0
-  size: 64,64
-  orig: 64,64
+  xy: 2400,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 1
 Flama-Bill-Complete_Jump_2
   rotate: false
-  xy: 1664,0
-  size: 64,64
-  orig: 64,64
+  xy: 2496,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 2
 Flama-Bill-Complete_Jump_3
   rotate: false
-  xy: 1728,0
-  size: 64,64
-  orig: 64,64
+  xy: 2592,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 3
 Flama-Bill-Complete_Jump_4
   rotate: false
-  xy: 1792,0
-  size: 64,64
-  orig: 64,64
+  xy: 2688,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 4
 Flama-Bill-Complete_Jump_5
   rotate: false
-  xy: 1856,0
-  size: 64,64
-  orig: 64,64
+  xy: 2784,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 5
 Flama-Bill-Complete_Jump_6
   rotate: false
-  xy: 1920,0
-  size: 64,64
-  orig: 64,64
+  xy: 2880,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 6
 Flama-Bill-Complete_Jump_7
   rotate: false
-  xy: 1984,0
-  size: 64,64
-  orig: 64,64
+  xy: 2976,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 7
 Flama-Bill-Complete_Jump_8
   rotate: false
-  xy: 2048,0
-  size: 64,64
-  orig: 64,64
+  xy: 3072,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 8
 Flama-Bill-Complete_Fall_0
   rotate: false
-  xy: 2112,0
-  size: 64,64
-  orig: 64,64
+  xy: 3168,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 0
 Flama-Bill-Complete_Fall_1
   rotate: false
-  xy: 2176,0
-  size: 64,64
-  orig: 64,64
+  xy: 3264,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 1
 Flama-Bill-Complete_Fall_2
   rotate: false
-  xy: 2240,0
-  size: 64,64
-  orig: 64,64
+  xy: 3360,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 2
 Flama-Bill-Complete_Fall_3
   rotate: false
-  xy: 2304,0
-  size: 64,64
-  orig: 64,64
+  xy: 3456,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 3
 Flama-Bill-Complete_Fall_4
   rotate: false
-  xy: 2368,0
-  size: 64,64
-  orig: 64,64
+  xy: 3552,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 4
 Flama-Bill-Complete_Fall_5
   rotate: false
-  xy: 2432,0
-  size: 64,64
-  orig: 64,64
+  xy: 3648,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 5
 Flama-Bill-Complete_Fall_6
   rotate: false
-  xy: 2496,0
-  size: 64,64
-  orig: 64,64
+  xy: 3744,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 6
 Flama-Bill-Complete_Fall_7
   rotate: false
-  xy: 2560,0
-  size: 64,64
-  orig: 64,64
+  xy: 3840,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 7
 Flama-Bill-Complete_Fall-Sideways_0
   rotate: false
-  xy: 2624,0
-  size: 64,64
-  orig: 64,64
+  xy: 3936,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 0
 Flama-Bill-Complete_Fall-Sideways_1
   rotate: false
-  xy: 2688,0
-  size: 64,64
-  orig: 64,64
+  xy: 4032,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 1
 Flama-Bill-Complete_Fall-Sideways_2
   rotate: false
-  xy: 2752,0
-  size: 64,64
-  orig: 64,64
+  xy: 4128,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 2
 Flama-Bill-Complete_Fall-Sideways_3
   rotate: false
-  xy: 2816,0
-  size: 64,64
-  orig: 64,64
+  xy: 4224,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 3
 Flama-Bill-Complete_Fall-Sideways_4
   rotate: false
-  xy: 2880,0
-  size: 64,64
-  orig: 64,64
+  xy: 4320,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 4
 Flama-Bill-Complete_Fall-Sideways_5
   rotate: false
-  xy: 2944,0
-  size: 64,64
-  orig: 64,64
+  xy: 4416,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 5
 Flama-Bill-Complete_Fall-Sideways_6
   rotate: false
-  xy: 3008,0
-  size: 64,64
-  orig: 64,64
+  xy: 4512,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 6
 Flama-Bill-Complete_Fall-Sideways_7
   rotate: false
-  xy: 3072,0
-  size: 64,64
-  orig: 64,64
+  xy: 4608,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 7
 Flama-Bill-Complete_Damaged
   rotate: false
-  xy: 3136,0
-  size: 64,64
-  orig: 64,64
+  xy: 4704,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 0
 Flama-Bill-Complete_Damaged
   rotate: false
-  xy: 3200,0
-  size: 64,64
-  orig: 64,64
+  xy: 4800,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 1
 Flama-Bill-Complete_Damaged
   rotate: false
-  xy: 3264,0
-  size: 64,64
-  orig: 64,64
+  xy: 4896,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 2
 Flama-Bill-Complete_Damaged
   rotate: false
-  xy: 3328,0
-  size: 64,64
-  orig: 64,64
+  xy: 4992,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 3
 Flama-Bill-Complete_Damaged
   rotate: false
-  xy: 3392,0
-  size: 64,64
-  orig: 64,64
+  xy: 5088,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 4
 Flama-Bill-Complete_Damaged
   rotate: false
-  xy: 3456,0
-  size: 64,64
-  orig: 64,64
+  xy: 5184,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 5
 Flama-Bill-Complete_Damaged
   rotate: false
-  xy: 3520,0
-  size: 64,64
-  orig: 64,64
+  xy: 5280,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 6
 Flama-Bill-Complete_Damaged
   rotate: false
-  xy: 3584,0
-  size: 64,64
-  orig: 64,64
+  xy: 5376,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 7
 Flama-Bill-Complete_Died
   rotate: false
-  xy: 3648,0
-  size: 64,64
-  orig: 64,64
+  xy: 5472,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 0
 Flama-Bill-Complete_Died
   rotate: false
-  xy: 3712,0
-  size: 64,64
-  orig: 64,64
+  xy: 5568,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 1
 Flama-Bill-Complete_Died
   rotate: false
-  xy: 3776,0
-  size: 64,64
-  orig: 64,64
+  xy: 5664,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 2
 Flama-Bill-Complete_Died
   rotate: false
-  xy: 3840,0
-  size: 64,64
-  orig: 64,64
+  xy: 5760,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 3
 Flama-Bill-Complete_Died
   rotate: false
-  xy: 3904,0
-  size: 64,64
-  orig: 64,64
+  xy: 5856,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 4
 Flama-Bill-Complete_Died
   rotate: false
-  xy: 3968,0
-  size: 64,64
-  orig: 64,64
+  xy: 5952,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 5
 Flama-Bill-Complete_Died
   rotate: false
-  xy: 4032,0
-  size: 64,64
-  orig: 64,64
+  xy: 6048,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 6
 Flama-Bill-Complete_Died
   rotate: false
-  xy: 4096,0
-  size: 64,64
-  orig: 64,64
+  xy: 6144,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 7
 Flama-Bill-Complete_Died
   rotate: false
-  xy: 4160,0
-  size: 64,64
-  orig: 64,64
+  xy: 6240,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 8
 Flama-Bill-Complete_Died
   rotate: false
-  xy: 4224,0
-  size: 64,64
-  orig: 64,64
+  xy: 6336,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 9
 Flama-Bill-Complete_Died
   rotate: false
-  xy: 4288,0
-  size: 64,64
-  orig: 64,64
+  xy: 6432,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 10
 Flama-Bill-Complete_Died
   rotate: false
-  xy: 4352,0
-  size: 64,64
-  orig: 64,64
+  xy: 6528,0
+  size: 96,64
+  orig: 96,64
   offset: 0,0
   index: 11

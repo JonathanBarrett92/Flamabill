@@ -8,7 +8,8 @@ public enum EntityCategory {
     PLAYER((short)(1<<0)),
     GROUND((short)(1<<1)),
     SENSOR((short)(1<<2)),
-    ENEMY((short)(1<<3));
+    ENEMY((short)(1<<3)),
+    DEATH((short)(1<<4));
 
     private final short value;
 
