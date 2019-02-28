@@ -27,10 +27,11 @@ public class MenuScreen implements Screen {
     private static final int PlayY = PlayButtonY+50;
 
     private SpriteBatch batch;
-    private SpriteBatch buttonBatch;
     private TextureAtlas textureAtlas;
     private TextureAtlas textureAtlasButton;
     private float elapsedTime = 0;
+    public static Texture backgroundTexture;
+    public static Sprite backgroundSprite;
 
     private final Animation LogoAnimation;
     private final Animation logoAnimation2;
@@ -54,13 +55,15 @@ public class MenuScreen implements Screen {
         this.game = game;
         BitmapFont font = new BitmapFont();
 
+        backgroundTexture = new Texture("DumbBackground.png");
+        backgroundSprite = new Sprite(backgroundTexture);
+
         //shows the app what to images to call and use from Assets, placeholders at the minute I'll update them once we get this going properly
         PlayButtonInactive = new Texture("Menu_Button_Play_Inactive.png");
         QuitButtonInactive = new Texture("Menu_Button_Play_Inactive.png");
 
 
         batch = new SpriteBatch();
-        buttonBatch = new SpriteBatch();
         textureAtlas = new TextureAtlas(Gdx.files.internal("Logo.atlas"));
         textureAtlasButton = new TextureAtlas(Gdx.files.internal("Menu_Button_Play_active.atlas"));
 
@@ -77,7 +80,7 @@ public class MenuScreen implements Screen {
         Logo[6] = (textureAtlas.findRegion("Logo_chillin7"));
 
 
-        LogoAnimation = new Animation(0.15f, Logo);
+        LogoAnimation = new Animation(0.08f, Logo);
 
         TextureRegion[] Logo2 = new TextureRegion[9];
 
@@ -92,7 +95,7 @@ public class MenuScreen implements Screen {
         Logo2[7] = (textureAtlas.findRegion("Logo_Rise2"));
         Logo2[8] = (textureAtlas.findRegion("Logo_Rise3"));
 
-        logoAnimation2 = new Animation(0.15f,Logo2);
+        logoAnimation2 = new Animation(0.08f,Logo2);
 
 
 
@@ -108,7 +111,7 @@ public class MenuScreen implements Screen {
         Button[2] = (textureAtlasButton.findRegion("Menu_Button_Play_active 3"));
         Button[3] = (textureAtlasButton.findRegion("Menu_Button_Play_active 4"));
 
-        ButtonActive = new Animation(0.15f, Button);
+        ButtonActive = new Animation(0.08f, Button);
 
         PlayLabel = new Label("PLAY", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         QuitLabel = new Label("QUIT", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -122,14 +125,22 @@ public class MenuScreen implements Screen {
 
     }
 
+    public void renderBackground()
+    {
+        backgroundSprite.draw(batch);
+    }
+
     @Override
     public void render(float delta){
 //52.9, 80.8, 92.2
-
         BitmapFont font = new BitmapFont();
         Gdx.gl.glClearColor(52.9f/255f, 80.8f/255f, 92.2f/255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
+
+       // batch.begin();
+        //renderBackground();
+        //batch.end();
 
         //used to find out where the mouse is as well as position the buttons on the X axis
         int x = (Flamabill.V_WIDTH/2) - (Button_Width/2);
@@ -137,7 +148,6 @@ public class MenuScreen implements Screen {
         //play button code for positioning and telling it what to do when hovered or clicked GAME SCREEN MUST BE CHANGED
         if (Gdx.input.getX() < x +Button_Width && Gdx.input.getX() > x && Flamabill.V_HEIGHT - Gdx.input.getY() > PlayButtonY && Flamabill.V_HEIGHT - Gdx.input.getY() < PlayButtonY+Button_Height) {
             batch.begin();
-            elapsedTime += Gdx.graphics.getDeltaTime();
             batch.draw((TextureRegion) ButtonActive.getKeyFrame(elapsedTime, true),  x, PlayButtonY, Button_Width, Button_Height);
             batch.draw(QuitButtonInactive, x, QuitButtonY, Button_Width, Button_Height);
 
@@ -157,7 +167,6 @@ public class MenuScreen implements Screen {
         //Quit button code for positioning and telling it what to do when hovered or clicked
         if (Gdx.input.getX() < x+Button_Width && Gdx.input.getX() > x && Flamabill.V_HEIGHT - Gdx.input.getY() > QuitButtonY && Flamabill.V_HEIGHT - Gdx.input.getY() < QuitButtonY+Button_Height) {
             batch.begin();
-            elapsedTime += Gdx.graphics.getDeltaTime();
             batch.draw((TextureRegion) ButtonActive.getKeyFrame(elapsedTime, true),  x, QuitButtonY, Button_Width, Button_Height);
             batch.draw(PlayButtonInactive, x, PlayButtonY, Button_Width, Button_Height);
 
@@ -215,6 +224,8 @@ public class MenuScreen implements Screen {
 
     @Override
     public void dispose(){
+
         batch.dispose();
+        menuMusic.dispose();
     }
 }

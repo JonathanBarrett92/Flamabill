@@ -27,6 +27,9 @@ public class PlayScreen implements Screen {
     private Flamabill game;
     //private Player player;
     private TextureAtlas atlas;
+    private Hud hud;
+
+    private float elapsedTime = 0;
 
     private World world;
 
@@ -38,6 +41,7 @@ public class PlayScreen implements Screen {
 
     public PlayScreen (Flamabill game){
         this.game = game;
+        hud = new Hud(game.batch);
 
         // Camera and viewport
         // Create world object with -9.8g in Y axis
@@ -80,6 +84,7 @@ public class PlayScreen implements Screen {
     public void update(float dt) {
         world.step(1/60f, 6, 2);
 
+        hud.update(dt);
         /*
         // player's body becomes the center of the camera position
         camera.position.x = player.b2body.getPosition().x;
@@ -139,11 +144,16 @@ public class PlayScreen implements Screen {
         game.batch.end();
         */
 
+
+        game.batch.begin();
+        elapsedTime += Gdx.graphics.getDeltaTime();
+        game.batch.draw(hud.HealthBar.getKeyFrame(elapsedTime/2, false), 0, 0);
+        game.batch.end();
+
         // Hud stuff
-        /*
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
-        */
+
     }
 
     @Override
