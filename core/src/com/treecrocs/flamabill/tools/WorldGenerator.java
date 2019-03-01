@@ -53,6 +53,7 @@ public class WorldGenerator {
 
             shape.setAsBox((rect.getWidth() / 2) / Flamabill.PPM, (rect.getHeight() / 2) / Flamabill.PPM);
             fixtureDef.shape = shape;
+            fixtureDef.friction = 100f;
             body.createFixture(fixtureDef);
         }
     }

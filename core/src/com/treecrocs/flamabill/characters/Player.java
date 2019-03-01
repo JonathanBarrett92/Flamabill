@@ -3,6 +3,7 @@ package com.treecrocs.flamabill.characters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
@@ -14,7 +15,7 @@ import com.treecrocs.flamabill.screens.PlayScreen;
 
 public class Player extends Sprite {
 
-    public World world;
+    private World world;
     public Body b2d;
     private CharacterController controller;
 
@@ -31,10 +32,10 @@ public class Player extends Sprite {
     private Fixture playerPhysicsFixture;
     private Fixture playerSensorFixture;
 
-    PlayScreen playScreen;
+    private PlayScreen playScreen;
 
-    public PlayerState currentState;
-    public PlayerState previousState;
+    private PlayerState currentState;
+    private PlayerState previousState;
 
 
     private TextureAtlas atlas;
@@ -139,7 +140,6 @@ public class Player extends Sprite {
 
     public void update(float dt){
         setPosition(b2d.getPosition().x - getWidth()/2, b2d.getPosition().y - getHeight()/2);
-        //setPosition(b2d.getPosition().x - getWidth(), b2d.getPosition().y - getHeight() / 3);
         b2d.setTransform(b2d.getPosition(), 0);
         this.setRegion(getFrame(dt));
         this.playerSensorFixture.setFriction(10f);
@@ -150,16 +150,16 @@ public class Player extends Sprite {
         //System.out.println(this.b2d.getLinearVelocity().x + " " + this.b2d.getLinearVelocity().y);
     }
 
-    public void determineMovement(float dt){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+    public void determineMovement(float dt, int jumpKey, int rightKey, int leftKey){
+        if(Gdx.input.isKeyJustPressed(jumpKey)) {
             b2d.applyLinearImpulse(new Vector2(0, 0.5f), b2d.getWorldCenter(), true);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && b2d.getLinearVelocity().x <= 6) {
+        if(Gdx.input.isKeyPressed(rightKey) && b2d.getLinearVelocity().x <= 2) {
             //player.b2d.setLinearVelocity(new Vector2(0.2f, 0f));
             b2d.applyLinearImpulse(new Vector2(0.1f, 0f), b2d.getWorldCenter(), true);
             //b2d.setLinearVelocity(new Vector2(1.8f, 0f));
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && b2d.getLinearVelocity().x >= -6) {
+        if(Gdx.input.isKeyPressed(leftKey) && b2d.getLinearVelocity().x >= -2) {
             //b2d.setLinearVelocity(new Vector2(-1.8f, 0f));
             b2d.applyLinearImpulse(new Vector2(-0.1f, 0f), b2d.getWorldCenter(), true);
         }
@@ -183,9 +183,9 @@ public class Player extends Sprite {
         FixtureDef sensorDefinition = new FixtureDef();
 
 
-//        PolygonShape playerBox = new PolygonShape();
-//        playerBox.setAsBox(16/Flamabill.PPM, 16/Flamabill.PPM);
-//        playerPhysicsFixture = b2d.createFixture(playerBox, 1);
+        PolygonShape playerBox = new PolygonShape();
+        playerBox.setAsBox(16/Flamabill.PPM, 16/Flamabill.PPM);
+        playerPhysicsFixture = b2d.createFixture(playerBox, 1);
 
         CircleShape groundSens = new CircleShape();
         groundSens.setRadius(15 / Flamabill.PPM);
@@ -201,7 +201,6 @@ public class Player extends Sprite {
 
         //boxDef.shape = playerBox;
         sensorDefinition.shape = groundSens;
-        sensorDefinition.isSensor = true;
         sensorDefinition.density = 1f;
         sensorDefinition.restitution = 0f;
         sensorDefinition.friction = 100f;

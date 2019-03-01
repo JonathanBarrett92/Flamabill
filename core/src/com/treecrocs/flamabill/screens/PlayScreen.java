@@ -1,6 +1,7 @@
 package com.treecrocs.flamabill.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -20,9 +21,12 @@ import com.treecrocs.flamabill.tools.WorldGenerator;
 public class PlayScreen implements Screen {
 
     private OrthographicCamera camera;
+    private OrthographicCamera cameraPlayer2;
     private FitViewport viewport;
+    private FitViewport viewport2;
     private Flamabill game;
     private Player player;
+    private Player player2;
     private TextureAtlas atlas;
     private Hud hud;
     private World world;
@@ -32,6 +36,7 @@ public class PlayScreen implements Screen {
     private TmxMapLoader maploader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
+    private OrthogonalTiledMapRenderer renderer2;
 
     private CharacterController controller;
 
@@ -45,25 +50,32 @@ public class PlayScreen implements Screen {
         hud = new Hud(game.batch);
 
         camera = new OrthographicCamera();
-        viewport = new FitViewport(Flamabill.V_WIDTH / Flamabill.PPM,Flamabill.V_HEIGHT / Flamabill.PPM, camera);
+        cameraPlayer2 = new OrthographicCamera();
+
+        viewport = new FitViewport(Flamabill.V_WIDTH / Flamabill.PPM,Flamabill.V_HEIGHT / 2f / Flamabill.PPM, camera);
+        viewport2 = new FitViewport(Flamabill.V_WIDTH / Flamabill.PPM,Flamabill.V_HEIGHT / 2f / Flamabill.PPM, cameraPlayer2);
 
         // Load map and set up renderer
         maploader = new TmxMapLoader();
         map = maploader.load("../../stuff/Tiled/testmap2.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / Flamabill.PPM);
+        renderer2 = new OrthogonalTiledMapRenderer(map, 1/Flamabill.PPM);
 
         // Center the camera correctly at the start
         camera.position.set(viewport.getWorldWidth() / 2f, viewport.getWorldHeight() / 2f, 0);
-        // For some reason all three of them return 0 with ExtendViewport is used
-        System.out.println(viewport.getWorldWidth() + " | " + viewport.getScreenWidth() + " | " + viewport.getScreenX());
+        cameraPlayer2.position.set(viewport2.getWorldHeight()/2f, viewport2.getWorldHeight()/2f, 0);
+
+//        // For some reason all three of them return 0 with ExtendViewport is used
+//        System.out.println(viewport.getWorldWidth() + " | " + viewport.getScreenWidth() + " | " + viewport.getScreenX());
 
         // Vector2 is for gravity, the true is for sleeping bodies
         // (does not calculate objects that haven't moved)
         world = new World(new Vector2(0, -10f), true);
-        b2dr = new Box2DDebugRenderer();
+        b2dr = new Box2DDebugRenderer(false,false,false,false,false,false);
 
         controller = new CharacterController();
         player = new Player(this, controller);
+        player2 = new Player(this, controller);
 
         // Loads in the objects
         new WorldGenerator(world, map);
@@ -84,13 +96,21 @@ public class PlayScreen implements Screen {
         camera.position.x = player.b2d.getPosition().x;
         camera.position.y = player.b2d.getPosition().y;
 
+        cameraPlayer2.position.x = player2.b2d.getPosition().x;
+        cameraPlayer2.position.y = player2.b2d.getPosition().y;
 
-        player.determineMovement(dt);
+
+        player.determineMovement(dt, Input.Keys.W, Input.Keys.D, Input.Keys.A);
         player.update(dt);
 
+        player2.determineMovement(dt, Input.Keys.UP, Input.Keys.RIGHT, Input.Keys.LEFT);
+        player2.update(dt);
+
         camera.update();
+        cameraPlayer2.update();
         // renderer will only draw what the camera can see in the game world
         renderer.setView(camera);
+        renderer2.setView(cameraPlayer2);
     }
 
     @Override
@@ -102,6 +122,7 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        Gdx.gl.glViewport(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()/2);
         renderer.render();
 
         b2dr.render(world, camera.combined);
@@ -109,9 +130,24 @@ public class PlayScreen implements Screen {
 
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
-        //game.batch.draw(player, (player.b2d.getPosition().x) + (Flamabill.V_WIDTH/2f), player.b2d.getPosition().y + (Flamabill.V_HEIGHT/2f), 64/Flamabill.PPM, 64/Flamabill.PPM);
-
         player.draw(game.batch);
+        player2.draw(game.batch);
+        game.batch.end();
+
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.stage.draw();
+
+        Gdx.gl.glViewport( 0,Gdx.graphics.getHeight()/2 ,Gdx.graphics.getWidth(),Gdx.graphics.getHeight()/2 );
+
+        renderer2.render();
+
+        b2dr.render(world, cameraPlayer2.combined);
+
+
+        game.batch.setProjectionMatrix(cameraPlayer2.combined);
+        game.batch.begin();
+        player.draw(game.batch);
+        player2.draw(game.batch);
         game.batch.end();
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
@@ -123,6 +159,7 @@ public class PlayScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         viewport.update(width,height);
+        viewport2.update(width,height);
 
     }
 
