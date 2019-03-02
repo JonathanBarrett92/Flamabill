@@ -28,12 +28,12 @@ public class WorldGenerator {
         fixtureDef = new FixtureDef();
 
         generateSquareTerrain();
-
+        generateWater();
+        generateCheckpoints();
         /*
             TODO:
             Generate Polygonal Terrain
             Generate Lighting Fixtures
-            Generate Interactive Items (collectibles and campfires?)
          */
 
     }
@@ -41,7 +41,7 @@ public class WorldGenerator {
 
     private void generateSquareTerrain() {
         // Create ground bodies/ fixtures
-        for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get("Ground").getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             // Sets body type and position
@@ -52,8 +52,50 @@ public class WorldGenerator {
             body = world.createBody(bodyDef);
 
             shape.setAsBox((rect.getWidth() / 2) / Flamabill.PPM, (rect.getHeight() / 2) / Flamabill.PPM);
+            fixtureDef.filter.categoryBits = EntityCategory.GROUND;
+            fixtureDef.filter.maskBits = EntityCategory.PLAYER;
             fixtureDef.shape = shape;
-            fixtureDef.friction = 100f;
+            body.createFixture(fixtureDef);
+        }
+    }
+
+    private void generateWater() {
+        // Create ground bodies/ fixtures
+        for (MapObject object : map.getLayers().get("Water").getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            // Sets body type and position
+            bodyDef.type = BodyDef.BodyType.StaticBody;
+            bodyDef.position.set((rect.getX() + rect.getWidth() / 2) / Flamabill.PPM, (rect.getY() + rect.getHeight() / 2) / Flamabill.PPM);
+
+
+            body = world.createBody(bodyDef);
+
+            shape.setAsBox((rect.getWidth() / 2) / Flamabill.PPM, (rect.getHeight() / 2) / Flamabill.PPM);
+            fixtureDef.filter.categoryBits = EntityCategory.DEATH;
+            fixtureDef.filter.maskBits = EntityCategory.PLAYER;
+            fixtureDef.shape = shape;
+            body.createFixture(fixtureDef);
+        }
+    }
+
+    private void generateCheckpoints() {
+        // Create ground bodies/ fixtures
+        for (MapObject object : map.getLayers().get("CheckPoints").getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            // Sets body type and position
+            bodyDef.type = BodyDef.BodyType.StaticBody;
+            bodyDef.position.set((rect.getX() + rect.getWidth() / 2) / Flamabill.PPM, (rect.getY() + rect.getHeight() / 2) / Flamabill.PPM);
+
+
+            body = world.createBody(bodyDef);
+
+            shape.setAsBox((rect.getWidth() / 2) / Flamabill.PPM, (rect.getHeight() / 2) / Flamabill.PPM);
+            fixtureDef.filter.categoryBits = EntityCategory.CHECKPOINT;
+            fixtureDef.filter.maskBits = EntityCategory.PLAYER;
+            fixtureDef.isSensor = true;
+            fixtureDef.shape = shape;
             body.createFixture(fixtureDef);
         }
     }

@@ -3,6 +3,10 @@ package com.treecrocs.flamabill.characters;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 
+/*
+    TODO: This class is broken since Player 2 implementation, fix for both instances to
+        get rid of the determine movement function which is somewhat sloppy.
+ */
 
 public class CharacterController implements InputProcessor {
 
@@ -11,14 +15,21 @@ public class CharacterController implements InputProcessor {
     public boolean up;
     public boolean keyProcessed;
 
+//    private int leftKey;
+//    private int rightKey;
+//    private int jumpKey;
+//
+//    public CharacterController(){
+//
+//    }
+
     @Override
     public boolean keyDown(int keycode) {
-        boolean keyProcessed = false;
+        keyProcessed = false;
         switch (keycode){
             case Input.Keys.A:
                 left = true;
                 keyProcessed = true;
-                System.out.println("left pressed");
                 break;
 
             case Input.Keys.D:
@@ -36,19 +47,19 @@ public class CharacterController implements InputProcessor {
 
     @Override
     public boolean keyUp(int keycode) {
-        boolean keyProcessed = false;
+        keyProcessed = false;
         switch (keycode){
-            case Input.Keys.LEFT:
+            case Input.Keys.A:
                 left = false;
                 keyProcessed = true;
                 break;
 
-            case Input.Keys.RIGHT:
+            case Input.Keys.D:
                 right = false;
                 keyProcessed = true;
                 break;
 
-            case Input.Keys.UP:
+            case Input.Keys.W:
                 up = false;
                 keyProcessed = true;
                 break;

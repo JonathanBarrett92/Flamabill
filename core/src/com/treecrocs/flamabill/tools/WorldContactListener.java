@@ -1,6 +1,7 @@
 package com.treecrocs.flamabill.tools;
 
 import com.badlogic.gdx.physics.box2d.*;
+import com.treecrocs.flamabill.characters.Player;
 
 public class WorldContactListener implements ContactListener {
 
@@ -13,9 +14,18 @@ public class WorldContactListener implements ContactListener {
         int cDef = fixA.getFilterData().categoryBits | fixB.getFilterData().categoryBits;
 
         switch (cDef){
-            //TODO: Fix this
-            //case EntityCategory.PLAYER.getFilter() | EntityCategory.DEATH.getFilter():
-
+            case EntityCategory.PLAYER | EntityCategory.DEATH:
+                if(fixA.getFilterData().categoryBits == EntityCategory.PLAYER)
+                    ((Player) fixA.getUserData()).die();
+                else
+                    ((Player) fixB.getUserData()).die();
+                break;
+            case EntityCategory.PLAYER | EntityCategory.CHECKPOINT:
+                if(fixA.getFilterData().categoryBits == EntityCategory.PLAYER)
+                    ((Player) fixA.getUserData()).replenishHealth();
+                else
+                    ((Player) fixB.getUserData()).replenishHealth();
+                break;
         }
 
     }

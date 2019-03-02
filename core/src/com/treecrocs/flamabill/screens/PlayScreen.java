@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.treecrocs.flamabill.Flamabill;
 import com.treecrocs.flamabill.characters.CharacterController;
 import com.treecrocs.flamabill.characters.Player;
+import com.treecrocs.flamabill.tools.WorldContactListener;
 import com.treecrocs.flamabill.tools.WorldGenerator;
 
 public class PlayScreen implements Screen {
@@ -30,6 +31,7 @@ public class PlayScreen implements Screen {
     private TextureAtlas atlas;
     private Hud hud;
     private World world;
+    private WorldContactListener contactListener;
 
     // Debug renderer gives outlines to the objects
     private Box2DDebugRenderer b2dr;
@@ -57,7 +59,7 @@ public class PlayScreen implements Screen {
 
         // Load map and set up renderer
         maploader = new TmxMapLoader();
-        map = maploader.load("../../stuff/Tiled/testmap2.tmx");
+        map = maploader.load("map.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / Flamabill.PPM);
         renderer2 = new OrthogonalTiledMapRenderer(map, 1/Flamabill.PPM);
 
@@ -71,7 +73,11 @@ public class PlayScreen implements Screen {
         // Vector2 is for gravity, the true is for sleeping bodies
         // (does not calculate objects that haven't moved)
         world = new World(new Vector2(0, -10f), true);
-        b2dr = new Box2DDebugRenderer(false,false,false,false,false,false);
+        contactListener = new WorldContactListener();
+        world.setContactListener(contactListener);
+
+        //b2dr = new Box2DDebugRenderer(false,false,false,false,false,false);
+        b2dr = new Box2DDebugRenderer();
 
         controller = new CharacterController();
         player = new Player(this, controller);
@@ -93,11 +99,11 @@ public class PlayScreen implements Screen {
 
 
         // player's body becomes the center of the camera position
-        camera.position.x = player.b2d.getPosition().x;
-        camera.position.y = player.b2d.getPosition().y;
+        camera.position.x = player.playerBody.getPosition().x;
+        camera.position.y = player.playerBody.getPosition().y;
 
-        cameraPlayer2.position.x = player2.b2d.getPosition().x;
-        cameraPlayer2.position.y = player2.b2d.getPosition().y;
+        cameraPlayer2.position.x = player2.playerBody.getPosition().x;
+        cameraPlayer2.position.y = player2.playerBody.getPosition().y;
 
 
         player.determineMovement(dt, Input.Keys.W, Input.Keys.D, Input.Keys.A);
@@ -122,36 +128,16 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        /*
+        Render first player's view
+         */
         Gdx.gl.glViewport(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()/2);
-        renderer.render();
-
-        b2dr.render(world, camera.combined);
-
-
-        game.batch.setProjectionMatrix(camera.combined);
-        game.batch.begin();
-        player.draw(game.batch);
-        player2.draw(game.batch);
-        game.batch.end();
-
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.stage.draw();
-
+        renderPlayerView(camera, renderer);
+        /*
+        Render second player's view
+         */
         Gdx.gl.glViewport( 0,Gdx.graphics.getHeight()/2 ,Gdx.graphics.getWidth(),Gdx.graphics.getHeight()/2 );
-
-        renderer2.render();
-
-        b2dr.render(world, cameraPlayer2.combined);
-
-
-        game.batch.setProjectionMatrix(cameraPlayer2.combined);
-        game.batch.begin();
-        player.draw(game.batch);
-        player2.draw(game.batch);
-        game.batch.end();
-
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.stage.draw();
+        renderPlayerView(cameraPlayer2, renderer2);
 
 
     }
@@ -190,5 +176,22 @@ public class PlayScreen implements Screen {
 
     public World getWorld(){
         return this.world;
+    }
+
+    private void renderPlayerView(OrthographicCamera camera, OrthogonalTiledMapRenderer renderer){
+        renderer.render();
+
+        b2dr.render(world, camera.combined);
+
+
+        game.batch.setProjectionMatrix(camera.combined);
+        game.batch.begin();
+        player.draw(game.batch);
+        player2.draw(game.batch);
+        game.batch.end();
+
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.stage.draw();
+
     }
 }

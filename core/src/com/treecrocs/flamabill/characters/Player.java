@@ -2,8 +2,6 @@ package com.treecrocs.flamabill.characters;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
@@ -16,8 +14,10 @@ import com.treecrocs.flamabill.screens.PlayScreen;
 public class Player extends Sprite {
 
     private World world;
-    public Body b2d;
+    private PlayScreen playScreen;
+    private TextureAtlas atlas;
     private CharacterController controller;
+    public Body playerBody;
 
     private Animation<TextureRegion> idle;
     private Animation<TextureRegion> running;
@@ -25,21 +25,12 @@ public class Player extends Sprite {
     private Animation<TextureRegion> falling;
     private Animation<TextureRegion> fallingSideways;
     private Animation<TextureRegion> damaged;
-    private Animation<TextureRegion> deathAnim;
-
-    private boolean isRunningLeft;
-
-    private Fixture playerPhysicsFixture;
-    private Fixture playerSensorFixture;
-
-    private PlayScreen playScreen;
+    private Animation<TextureRegion> dead;
 
     private PlayerState currentState;
     private PlayerState previousState;
-
-
-    private TextureAtlas atlas;
-
+    private boolean isRunningLeft;
+    private boolean playerIsDead;
     private float stateTime = 0;
 
     public Player(PlayScreen playScreen, CharacterController controller){
@@ -47,7 +38,7 @@ public class Player extends Sprite {
         this.playScreen = playScreen;
         this.world = playScreen.getWorld();
         this.controller = controller;
-        createPlayerBody(512, 512);
+        createPlayerBody2(512, 512);
 
         currentState = PlayerState.IDLE;
         previousState = PlayerState.IDLE;
@@ -58,6 +49,7 @@ public class Player extends Sprite {
         jumping = createAnimation("Flama-Bill-Complete_Jump_", 8, 0.1f);
         falling = createAnimation("Flama-Bill-Complete_Fall_", 8,0.1f);
         fallingSideways = createAnimation("Flama-Bill-Complete_Fall-Sideways_", 7, 0.2f);
+        dead = createAnimation("Flama-Bill-Complete_Died_", 11, 0.1f);
 
         //Initial values set.
         setBounds(512/Flamabill.PPM,512/Flamabill.PPM,96/Flamabill.PPM, 64/Flamabill.PPM);
@@ -82,6 +74,9 @@ public class Player extends Sprite {
         TextureRegion region;
 
         switch (currentState){
+            case DEAD:
+                region = dead.getKeyFrame(stateTime, false);
+                break;
             case RUNNING:
                 region = running.getKeyFrame(stateTime, true);
                 break;
@@ -99,18 +94,18 @@ public class Player extends Sprite {
         }
 
         //if player is running left and the texture isn't facing left... flip it.
-        if ((b2d.getLinearVelocity().x > 0 || !isRunningLeft) && !region.isFlipX()) {
+        if ((playerBody.getLinearVelocity().x > 0 || !isRunningLeft) && !region.isFlipX()) {
             region.flip(true, false);
             isRunningLeft = false;
         }
         //if player is running right and the texture isn't facing right... flip it.
-        else if((b2d.getLinearVelocity().x < 0 || isRunningLeft) && region.isFlipX()){
+        else if((playerBody.getLinearVelocity().x < 0 || isRunningLeft) && region.isFlipX()){
             region.flip(true, false);
             isRunningLeft = true;
         }
 
-        //if the current state is the same as the previous state increase the state timer.
-        //otherwise the state has changed and we need to reset timer.
+        //determine whether current state is the same as the previous state and increase timer
+        //else state is changed and reset timer
         stateTime = currentState == previousState ? stateTime + dt : 0;
         //update previous state
         previousState = currentState;
@@ -120,17 +115,19 @@ public class Player extends Sprite {
 
 
     public PlayerState getState(){
-
-        if (this.b2d.getLinearVelocity().y > 0.4f || (this.b2d.getLinearVelocity().y < 0.2f && previousState == PlayerState.JUMPING)){
+        if(this.isDead()){
+            return PlayerState.DEAD;
+        }
+        else if (this.playerBody.getLinearVelocity().y > 0.4f){
             return PlayerState.JUMPING;
         }
-        else if (this.b2d.getLinearVelocity().y < 0 && this.b2d.getLinearVelocity().x < 1f && this.b2d.getLinearVelocity().x > -1f){
+        else if (this.playerBody.getLinearVelocity().y < 0 && this.playerBody.getLinearVelocity().x < 1f && this.playerBody.getLinearVelocity().x > -1f){
             return PlayerState.FALLING;
         }
-        else if (this.b2d.getLinearVelocity().y < 0){
+        else if (this.playerBody.getLinearVelocity().y < 0){
             return PlayerState.FALLINGSIDEWAYS;
         }
-        else if (this.b2d.getLinearVelocity().x != 0){
+        else if (this.playerBody.getLinearVelocity().x != 0){
             return PlayerState.RUNNING;
         }
         else{
@@ -139,79 +136,96 @@ public class Player extends Sprite {
     }
 
     public void update(float dt){
-        setPosition(b2d.getPosition().x - getWidth()/2, b2d.getPosition().y - getHeight()/2);
-        b2d.setTransform(b2d.getPosition(), 0);
+        setPosition(playerBody.getPosition().x - getWidth()/2, playerBody.getPosition().y - getHeight()/4);
+        playerBody.setTransform(playerBody.getPosition(), 0);
         this.setRegion(getFrame(dt));
-        this.playerSensorFixture.setFriction(10f);
+        //this.playerSensorFixture.setFriction(10f);
 
         //System.out.println(this.currentState);
         //System.out.println(getRegionX() + " " + getRegionY());
         //System.out.println(getFrame(dt));
-        //System.out.println(this.b2d.getLinearVelocity().x + " " + this.b2d.getLinearVelocity().y);
+        //System.out.println(this.playerBody.getLinearVelocity().x + " " + this.playerBody.getLinearVelocity().y);
     }
 
     public void determineMovement(float dt, int jumpKey, int rightKey, int leftKey){
-        if(Gdx.input.isKeyJustPressed(jumpKey)) {
-            b2d.applyLinearImpulse(new Vector2(0, 0.5f), b2d.getWorldCenter(), true);
-        }
-        if(Gdx.input.isKeyPressed(rightKey) && b2d.getLinearVelocity().x <= 2) {
-            //player.b2d.setLinearVelocity(new Vector2(0.2f, 0f));
-            b2d.applyLinearImpulse(new Vector2(0.1f, 0f), b2d.getWorldCenter(), true);
-            //b2d.setLinearVelocity(new Vector2(1.8f, 0f));
-        }
-        if(Gdx.input.isKeyPressed(leftKey) && b2d.getLinearVelocity().x >= -2) {
-            //b2d.setLinearVelocity(new Vector2(-1.8f, 0f));
-            b2d.applyLinearImpulse(new Vector2(-0.1f, 0f), b2d.getWorldCenter(), true);
+        if(!isDead()){
+            if(Gdx.input.isKeyJustPressed(jumpKey)) {
+                this.jump();
+            }
+            if(Gdx.input.isKeyPressed(rightKey) && playerBody.getLinearVelocity().x <= 2) {
+                //player.playerBody.setLinearVelocity(new Vector2(0.2f, 0f));
+                playerBody.applyLinearImpulse(new Vector2(0.1f, 0f), playerBody.getWorldCenter(), true);
+                //playerBody.setLinearVelocity(new Vector2(1.8f, 0f));
+            }
+            if(Gdx.input.isKeyPressed(leftKey) && playerBody.getLinearVelocity().x >= -2) {
+                //playerBody.setLinearVelocity(new Vector2(-1.8f, 0f));
+                playerBody.applyLinearImpulse(new Vector2(-0.1f, 0f), playerBody.getWorldCenter(), true);
+            }
         }
 
     }
 
-    private void createPlayerBody(int spawnX, int spawnY) {
+
+    private void createPlayerBody2(int spawnX, int spawnY) {
+
         /*
             TODO:
                 - Bitmask filtering
                 - Update spawn position based on checkpoints
-                - Order code properly into groups
          */
-        BodyDef def = new BodyDef();
 
-        def.position.set(spawnX / Flamabill.PPM, spawnY / Flamabill.PPM);
-        def.type = BodyDef.BodyType.DynamicBody;
-        b2d = world.createBody(def);
+        //Create player body definition
+        BodyDef bodyDefinition = new BodyDef();
+        bodyDefinition.position.set(spawnX/Flamabill.PPM, spawnY/Flamabill.PPM);
+        bodyDefinition.type = BodyDef.BodyType.DynamicBody;
+        playerBody = world.createBody(bodyDefinition);
 
-        //FixtureDef boxDef = new FixtureDef();
-        FixtureDef sensorDefinition = new FixtureDef();
-
-
+        //Create player body Fixture Definition and shape
+        FixtureDef fixtureDef = new FixtureDef();
         PolygonShape playerBox = new PolygonShape();
-        playerBox.setAsBox(16/Flamabill.PPM, 16/Flamabill.PPM);
-        playerPhysicsFixture = b2d.createFixture(playerBox, 1);
+        playerBox.setAsBox(15/Flamabill.PPM,15/Flamabill.PPM);
 
-        CircleShape groundSens = new CircleShape();
-        groundSens.setRadius(15 / Flamabill.PPM);
-        groundSens.setPosition(new Vector2(0, -16f/Flamabill.PPM));
-        playerSensorFixture = b2d.createFixture(groundSens, 1);
+        //Filtering
+        fixtureDef.filter.categoryBits = EntityCategory.PLAYER;
+        fixtureDef.filter.maskBits = EntityCategory.GROUND | EntityCategory.DEATH | EntityCategory.CHECKPOINT;
 
+        fixtureDef.shape = playerBox;
+        fixtureDef.friction = 0.4f;
+        playerBody.createFixture(fixtureDef).setUserData(this);
 
+        //Creating a head to prevent bug with ceiling contact causing impossible states.
+        PolygonShape head = new PolygonShape();
+        float offsetY = 16f/Flamabill.PPM;
+        head.setAsBox(15/Flamabill.PPM, 1/Flamabill.PPM, new Vector2(0, offsetY), 0 );
+        fixtureDef.filter.categoryBits = EntityCategory.HEADSENSOR;
+        fixtureDef.filter.maskBits = EntityCategory.PLAYER | EntityCategory.GROUND;
+        fixtureDef.shape = head;
+        //fixtureDef.isSensor = true;
+        playerBody.createFixture(fixtureDef).setUserData(this);
 
-        //boxDef.filter.categoryBits = EntityCategory.PLAYER.getFilter();
-        sensorDefinition.filter.categoryBits = EntityCategory.SENSOR.getFilter();
-
-        //boxDef.density = 0;
-
-        //boxDef.shape = playerBox;
-        sensorDefinition.shape = groundSens;
-        sensorDefinition.density = 1f;
-        sensorDefinition.restitution = 0f;
-        sensorDefinition.friction = 100f;
-        //b2d.createFixture(boxDef).setUserData(this);
-        b2d.createFixture(sensorDefinition).setUserData(this);
-        b2d.setBullet(true);
-
-        groundSens.dispose();
     }
 
     public float getStateTime() {
         return stateTime;
+    }
+
+    private void jump(){
+        if (currentState != PlayerState.JUMPING && currentState != PlayerState.FALLING && currentState != PlayerState.FALLINGSIDEWAYS) {
+            playerBody.applyLinearImpulse(new Vector2(0, 4.20f), playerBody.getWorldCenter(), true);
+            currentState = PlayerState.JUMPING;
+        }
+    }
+
+    public void die(){
+        playerIsDead = true;
+        System.out.println(this + " dies");
+    }
+
+    public boolean isDead(){
+        return playerIsDead;
+    }
+
+    public void replenishHealth(){
+        System.out.println("Health replenished");
     }
 }
