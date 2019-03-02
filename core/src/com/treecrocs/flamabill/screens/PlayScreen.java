@@ -112,6 +112,8 @@ public class PlayScreen implements Screen {
         player2.determineMovement(dt, Input.Keys.UP, Input.Keys.RIGHT, Input.Keys.LEFT);
         player2.update(dt);
 
+        hud.update(dt);
+
         camera.update();
         cameraPlayer2.update();
         // renderer will only draw what the camera can see in the game world
