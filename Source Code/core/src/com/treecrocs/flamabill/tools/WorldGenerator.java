@@ -6,8 +6,11 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.Array;
 import com.treecrocs.flamabill.Flamabill;
 import com.treecrocs.flamabill.worldobjects.Campfire;
+
+import java.util.ArrayList;
 
 
 public class WorldGenerator {
@@ -19,6 +22,7 @@ public class WorldGenerator {
     private FixtureDef fixtureDef;
     private Body body;
     private Vector2 spawn;
+    private ArrayList<Campfire> campfires;
 
     public static float spawnX;
     public static float spawnY;
@@ -34,10 +38,11 @@ public class WorldGenerator {
 
         generateSquareTerrain();
         generateWater();
-        generateCheckpoints();
+        campfires = generateCheckpoints();
         spawn = getSpawnPoint();
         spawnX = spawn.x;
         spawnY = spawn.y;
+
 
         /*
             TODO:
@@ -88,27 +93,15 @@ public class WorldGenerator {
         }
     }
 
-    private void generateCheckpoints() {
+    private ArrayList<Campfire> generateCheckpoints() {
         // Create ground bodies/ fixtures
+        ArrayList<Campfire> campfireList = new ArrayList<Campfire>();
         for (MapObject object : map.getLayers().get("CheckPoints").getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-                new Campfire(rect, this.world);
-//            // Sets body type and position
-//            bodyDef.type = BodyDef.BodyType.StaticBody;
-//            bodyDef.position.set((rect.getX() + rect.getWidth() / 2) / Flamabill.PPM, (rect.getY() + rect.getHeight() / 2) / Flamabill.PPM);
-//
-//
-//            body = world.createBody(bodyDef);
-//
-//            shape.setAsBox((rect.getWidth() / 2) / Flamabill.PPM, (rect.getHeight() / 2) / Flamabill.PPM);
-//            fixtureDef.filter.categoryBits = EntityCategory.CHECKPOINT;
-//            fixtureDef.filter.maskBits = EntityCategory.PLAYER;
-//            fixtureDef.isSensor = true;
-//            fixtureDef.shape = shape;
-//            body.createFixture(fixtureDef);
-
-
+           // new Campfire(rect, this.world);
+            campfireList.add(new Campfire(rect, this.world));
         }
+        return campfireList;
     }
 
     public Vector2 getSpawnPoint() {
@@ -122,6 +115,10 @@ public class WorldGenerator {
             y = rect.getY();
         }
         return new Vector2(x, y);
+    }
+
+    public ArrayList<Campfire> getCampfires(){
+        return campfires;
     }
 
 

@@ -1,7 +1,9 @@
 package com.treecrocs.flamabill.tools;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.treecrocs.flamabill.characters.Player;
+import com.treecrocs.flamabill.worldobjects.Campfire;
 
 public class WorldContactListener implements ContactListener {
 
@@ -13,18 +15,22 @@ public class WorldContactListener implements ContactListener {
 
         int cDef = fixA.getFilterData().categoryBits | fixB.getFilterData().categoryBits;
 
-        switch (cDef){
+        switch (cDef) {
             case EntityCategory.PLAYER | EntityCategory.DEATH:
-                if(fixA.getFilterData().categoryBits == EntityCategory.PLAYER)
+                if (fixA.getFilterData().categoryBits == EntityCategory.PLAYER)
                     ((Player) fixA.getUserData()).die();
                 else
                     ((Player) fixB.getUserData()).die();
                 break;
             case EntityCategory.PLAYER | EntityCategory.CHECKPOINT:
-                if(fixA.getFilterData().categoryBits == EntityCategory.PLAYER)
-                    ((Player) fixA.getUserData()).replenishHealth();
-                else
-                    ((Player) fixB.getUserData()).replenishHealth();
+                if (fixA.getFilterData().categoryBits == EntityCategory.PLAYER) { //false
+                    Vector2 currPos = ((Player) fixA.getUserData()).playerBody.getPosition();
+                    ((Player) fixA.getUserData()).updateSpawn(currPos);
+                }
+                else {
+                    Vector2 currPos = ((Player) fixB.getUserData()).playerBody.getPosition();
+                    ((Player) fixB.getUserData()).updateSpawn(currPos);
+                }
                 break;
         }
 

@@ -23,17 +23,13 @@ public class Hud {
 
     private Integer worldTimer;
     private float timeCount;
-    private Integer score;
 
     public Animation<TextureRegion> HealthBar;
 
     private Label countdownLabel;
-    private Label scoreLabel;
-    private Label timeLabel;
-    private Label levelLabel;
-    private Label worldLabel;
     private Label FlamaLabel;
-    private Label EmptyLabel;
+
+    private boolean deadToTimer;
 
     public Hud(SpriteBatch sb){
 
@@ -47,9 +43,8 @@ public class Hud {
         }
         HealthBar = new Animation<TextureRegion>(1f, frames);
 
-        worldTimer = 70;
+        worldTimer = 10;
         timeCount = 0;
-        score = 0;
 
         viewport = new FitViewport(Flamabill.V_WIDTH, Flamabill.V_HEIGHT/2f, new OrthographicCamera());
         stage = new Stage(viewport, sb);
@@ -60,7 +55,7 @@ public class Hud {
         table.setFillParent(true);
 
         countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        FlamaLabel = new Label("Player 1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        FlamaLabel = new Label("Player ", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
 
         table.add(FlamaLabel).expandX().padTop(10);
@@ -81,6 +76,11 @@ public class Hud {
             worldTimer--;
             countdownLabel.setText(String.format("%03d", worldTimer));
             timeCount = 0;
+        }
+
+        if(worldTimer == 0){
+            deadToTimer = true;
+            worldTimer = 10;
         }
 
     }

@@ -19,6 +19,7 @@ import com.treecrocs.flamabill.characters.CharacterController;
 import com.treecrocs.flamabill.characters.Player;
 import com.treecrocs.flamabill.tools.WorldContactListener;
 import com.treecrocs.flamabill.tools.WorldGenerator;
+import com.treecrocs.flamabill.worldobjects.Campfire;
 
 public class PlayScreen implements Screen {
 
@@ -125,6 +126,10 @@ public class PlayScreen implements Screen {
         // renderer will only draw what the camera can see in the game world
         renderer.setView(camera);
         renderer2.setView(cameraPlayer2);
+
+        for (Campfire campfire : worldGen.getCampfires()) {
+            campfire.update(dt);
+        }
     }
 
     @Override
@@ -201,10 +206,12 @@ public class PlayScreen implements Screen {
 
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
+        for (Campfire campfire : worldGen.getCampfires()) {
+            campfire.draw(game.batch);
+        }
         player.draw(game.batch);
         player2.draw(game.batch);
         game.batch.end();
-
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
