@@ -5,6 +5,8 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.treecrocs.flamabill.Flamabill;
+import com.treecrocs.flamabill.screens.PlayScreen;
+import com.treecrocs.flamabill.tools.EntityCategory;
 
 public abstract class RectTileObject {
     protected World world;

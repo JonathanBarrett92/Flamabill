@@ -2,63 +2,63 @@ FlamaBuddy.png
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-FlamaBuddy_Standing
+FlamaBuddy_Standing_0
   rotate: false
   xy: 0,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 0
-FlamaBuddy_Standing
+FlamaBuddy_Standing_1
   rotate: false
   xy: 96,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 1
-FlamaBuddy_Standing
+FlamaBuddy_Standing_2
   rotate: false
   xy: 192,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 2
-FlamaBuddy_Standing
+FlamaBuddy_Standing_3
   rotate: false
   xy: 288,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 3
-FlamaBuddy_Standing
+FlamaBuddy_Standing_4
   rotate: false
   xy: 384,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 4
-FlamaBuddy_Standing
+FlamaBuddy_Standing_5
   rotate: false
   xy: 480,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 5
-FlamaBuddy_Standing
+FlamaBuddy_Standing_6
   rotate: false
   xy: 576,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 6
-FlamaBuddy_Standing
+FlamaBuddy_Standing_7
   rotate: false
   xy: 672,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 7
-FlamaBuddy_Pimp
+FlamaBuddy_Pimp_0
   rotate: false
   xy: 768,0
   size: 96,64
@@ -114,245 +114,245 @@ FlamaBuddy_Pimp
   orig: 96,64
   offset: 0,0
   index: 7
-FlamaBuddy_Run
+FlamaBuddy_Run_0
   rotate: false
   xy: 1536,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 0
-FlamaBuddy_Run
+FlamaBuddy_Run_1
   rotate: false
   xy: 1632,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 1
-FlamaBuddy_Run
+FlamaBuddy_Run_2
   rotate: false
   xy: 1728,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 2
-FlamaBuddy_Run
+FlamaBuddy_Run_3
   rotate: false
   xy: 1824,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 3
-FlamaBuddy_Run
+FlamaBuddy_Run_4
   rotate: false
   xy: 1920,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 4
-FlamaBuddy_Run
+FlamaBuddy_Run_5
   rotate: false
   xy: 2016,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 5
-FlamaBuddy_Run
+FlamaBuddy_Run_6
   rotate: false
   xy: 2112,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 6
-FlamaBuddy_Run
+FlamaBuddy_Run_7
   rotate: false
   xy: 2208,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 7
-FlamaBuddy_Jump
+FlamaBuddy_Jump_0
   rotate: false
   xy: 2304,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 0
-FlamaBuddy_Jump
+FlamaBuddy_Jump_1
   rotate: false
   xy: 2400,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 1
-FlamaBuddy_Jump
+FlamaBuddy_Jump_2
   rotate: false
   xy: 2496,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 2
-FlamaBuddy_Jump
+FlamaBuddy_Jump_3
   rotate: false
   xy: 2592,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 3
-FlamaBuddy_Jump
+FlamaBuddy_Jump_4
   rotate: false
   xy: 2688,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 4
-FlamaBuddy_Jump
+FlamaBuddy_Jump_5
   rotate: false
   xy: 2784,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 5
-FlamaBuddy_Jump
+FlamaBuddy_Jump_6
   rotate: false
   xy: 2880,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 6
-FlamaBuddy_Jump
+FlamaBuddy_Jump_7
   rotate: false
   xy: 2976,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 7
-FlamaBuddy_Jump
+FlamaBuddy_Jump_8
   rotate: false
   xy: 3072,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 8
-FlamaBuddy_Fall
+FlamaBuddy_Fall_0
   rotate: false
   xy: 3168,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 0
-FlamaBuddy_Fall
+FlamaBuddy_Fall_1
   rotate: false
   xy: 3264,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 1
-FlamaBuddy_Fall
+FlamaBuddy_Fall_2
   rotate: false
   xy: 3360,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 2
-FlamaBuddy_Fall
+FlamaBuddy_Fall_3
   rotate: false
   xy: 3456,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 3
-FlamaBuddy_Fall
+FlamaBuddy_Fall_4
   rotate: false
   xy: 3552,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 4
-FlamaBuddy_Fall
+FlamaBuddy_Fall_5
   rotate: false
   xy: 3648,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 5
-FlamaBuddy_Fall
+FlamaBuddy_Fall_6
   rotate: false
   xy: 3744,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 6
-FlamaBuddy_Fall
+FlamaBuddy_Fall_7
   rotate: false
   xy: 3840,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 7
-FlamaBuddy_Fall-Sideways
+FlamaBuddy_Fall-Sideways_0
   rotate: false
   xy: 3936,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 0
-FlamaBuddy_Fall-Sideways
+FlamaBuddy_Fall-Sideways_1
   rotate: false
   xy: 4032,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 1
-FlamaBuddy_Fall-Sideways
+FlamaBuddy_Fall-Sideways_2
   rotate: false
   xy: 4128,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 2
-FlamaBuddy_Fall-Sideways
+FlamaBuddy_Fall-Sideways_3
   rotate: false
   xy: 4224,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 3
-FlamaBuddy_Fall-Sideways
+FlamaBuddy_Fall-Sideways_4
   rotate: false
   xy: 4320,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 4
-FlamaBuddy_Fall-Sideways
+FlamaBuddy_Fall-Sideways_5
   rotate: false
   xy: 4416,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 5
-FlamaBuddy_Fall-Sideways
+FlamaBuddy_Fall-Sideways_6
   rotate: false
   xy: 4512,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 6
-FlamaBuddy_Fall-Sideways
+FlamaBuddy_Fall-Sideways_7
   rotate: false
   xy: 4608,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 7
-FlamaBuddy_Damaged
+FlamaBuddy_Damaged_0
   rotate: false
   xy: 4704,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 0
-FlamaBuddy_Damaged
+FlamaBuddy_Damaged_1
   rotate: false
   xy: 4800,0
   size: 96,64
@@ -401,161 +401,161 @@ FlamaBuddy_Damaged
   orig: 96,64
   offset: 0,0
   index: 7
-FlamaBuddy_Died
+FlamaBuddy_Died_0
   rotate: false
   xy: 5472,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 0
-FlamaBuddy_Died
+FlamaBuddy_Died_1
   rotate: false
   xy: 5568,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 1
-FlamaBuddy_Died
+FlamaBuddy_Died_2
   rotate: false
   xy: 5664,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 2
-FlamaBuddy_Died
+FlamaBuddy_Died_3
   rotate: false
   xy: 5760,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 3
-FlamaBuddy_Died
+FlamaBuddy_Died_4
   rotate: false
   xy: 5856,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 4
-FlamaBuddy_Died
+FlamaBuddy_Died_5
   rotate: false
   xy: 5952,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 5
-FlamaBuddy_Died
+FlamaBuddy_Died_6
   rotate: false
   xy: 6048,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 6
-FlamaBuddy_Died
+FlamaBuddy_Died_7
   rotate: false
   xy: 6144,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 7
-FlamaBuddy_Died
+FlamaBuddy_Died_8
   rotate: false
   xy: 6240,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 8
-FlamaBuddy_Died
+FlamaBuddy_Died_9
   rotate: false
   xy: 6336,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 9
-FlamaBuddy_Died
+FlamaBuddy_Died_10
   rotate: false
   xy: 6432,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 10
-FlamaBuddy_Died
+FlamaBuddy_Died_11
   rotate: false
   xy: 6528,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 11
-FlamaBuddy_WaterDeath
+FlamaBuddy_WaterDeath_0
   rotate: false
   xy: 6624,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 0
-FlamaBuddy_WaterDeath
+FlamaBuddy_WaterDeath_1
   rotate: false
   xy: 6720,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 1
-FlamaBuddy_WaterDeath
+FlamaBuddy_WaterDeath_2
   rotate: false
   xy: 6816,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 2
-FlamaBuddy_WaterDeath
+FlamaBuddy_WaterDeath_3
   rotate: false
   xy: 6912,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 3
-FlamaBuddy_WaterDeath
+FlamaBuddy_WaterDeath_4
   rotate: false
   xy: 7008,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 4
-FlamaBuddy_WaterDeath
+FlamaBuddy_WaterDeath_5
   rotate: false
   xy: 7104,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 5
-FlamaBuddy_WaterDeath
+FlamaBuddy_WaterDeath_6
   rotate: false
   xy: 7200,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 6
-FlamaBuddy_WaterDeath
+FlamaBuddy_WaterDeath_7
   rotate: false
   xy: 7296,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 7
-FlamaBuddy_WaterDeath
+FlamaBuddy_WaterDeath_8
   rotate: false
   xy: 7392,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 8
-FlamaBuddy_WaterDeath
+FlamaBuddy_WaterDeath_9
   rotate: false
   xy: 7488,0
   size: 96,64
   orig: 96,64
   offset: 0,0
   index: 9
-FlamaBuddy_WaterDeath
+FlamaBuddy_WaterDeath_10
   rotate: false
   xy: 7584,0
   size: 96,64

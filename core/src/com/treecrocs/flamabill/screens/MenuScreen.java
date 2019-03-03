@@ -189,10 +189,10 @@ public class MenuScreen implements Screen {
 
         batch.begin();
         elapsedTime += Gdx.graphics.getDeltaTime();
-        batch.draw((TextureRegion) logoAnimation2.getKeyFrame(elapsedTime, false), (Flamabill.V_WIDTH/2f) - (160), 300);
+        batch.draw((TextureRegion) logoAnimation2.getKeyFrame(elapsedTime, false), (Flamabill.V_WIDTH/2f) - (160), (3*Flamabill.V_HEIGHT)/5f);
         if(logoAnimation2.isAnimationFinished(elapsedTime))
         {
-            batch.draw((TextureRegion) LogoAnimation.getKeyFrame(elapsedTime, true), (Flamabill.V_WIDTH/2f) - (160), 300);
+            batch.draw((TextureRegion) LogoAnimation.getKeyFrame(elapsedTime, true), (Flamabill.V_WIDTH/2f) - (160), (3*Flamabill.V_HEIGHT)/5f);
         }
         batch.end();
 

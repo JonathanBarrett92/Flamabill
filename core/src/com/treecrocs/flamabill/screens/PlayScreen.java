@@ -3,6 +3,7 @@ package com.treecrocs.flamabill.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -21,6 +22,7 @@ import com.treecrocs.flamabill.tools.WorldGenerator;
 
 public class PlayScreen implements Screen {
 
+    private final WorldGenerator worldGen;
     private OrthographicCamera camera;
     private OrthographicCamera cameraPlayer2;
     private FitViewport viewport;
@@ -32,6 +34,7 @@ public class PlayScreen implements Screen {
     private Hud hud;
     private World world;
     private WorldContactListener contactListener;
+    private Music gameMusic;
 
     // Debug renderer gives outlines to the objects
     private Box2DDebugRenderer b2dr;
@@ -44,7 +47,6 @@ public class PlayScreen implements Screen {
 
     public PlayScreen (Flamabill game){
         this.game = game;
-
         // Create world object with -9.8g in Y axis
         this.world = new World(new Vector2(0f,-9.80f), true);
 
@@ -59,7 +61,7 @@ public class PlayScreen implements Screen {
 
         // Load map and set up renderer
         maploader = new TmxMapLoader();
-        map = maploader.load("map.tmx");
+        map = maploader.load("map3.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / Flamabill.PPM);
         renderer2 = new OrthogonalTiledMapRenderer(map, 1/Flamabill.PPM);
 
@@ -70,22 +72,26 @@ public class PlayScreen implements Screen {
 //        // For some reason all three of them return 0 with ExtendViewport is used
 //        System.out.println(viewport.getWorldWidth() + " | " + viewport.getScreenWidth() + " | " + viewport.getScreenX());
 
-        // Vector2 is for gravity, the true is for sleeping bodies
-        // (does not calculate objects that haven't moved)
-        world = new World(new Vector2(0, -10f), true);
         contactListener = new WorldContactListener();
         world.setContactListener(contactListener);
 
-        //b2dr = new Box2DDebugRenderer(false,false,false,false,false,false);
-        b2dr = new Box2DDebugRenderer();
-
-        controller = new CharacterController();
-        player = new Player(this, controller);
-        player2 = new Player(this, controller);
+        b2dr = new Box2DDebugRenderer(false,false,false,false,false,false);
+        //b2dr = new Box2DDebugRenderer();
 
         // Loads in the objects
-        new WorldGenerator(world, map);
+        worldGen = new WorldGenerator(world, map);
 
+        controller = new CharacterController();
+        player = new Player(this, controller, "_");
+        player2 = new Player(this, controller, "P2_");
+
+        player.setSpawn(worldGen.getSpawnPoint());
+        player2.setSpawn(worldGen.getSpawnPoint());
+
+
+        gameMusic = Gdx.audio.newMusic(Gdx.files.internal("music/tenseMusic.mp3"));
+        gameMusic.setLooping(true);
+        gameMusic.play();
     }
 
     @Override
@@ -168,6 +174,8 @@ public class PlayScreen implements Screen {
 
     @Override
     public void dispose() {
+        gameMusic.dispose();
+        hud.dispose();
 
     }
 
@@ -178,6 +186,11 @@ public class PlayScreen implements Screen {
 
     public World getWorld(){
         return this.world;
+    }
+
+
+    public WorldGenerator getWorldGen(){
+        return this.worldGen;
     }
 
     private void renderPlayerView(OrthographicCamera camera, OrthogonalTiledMapRenderer renderer){

@@ -26,33 +26,41 @@ public class Player extends Sprite {
     private Animation<TextureRegion> fallingSideways;
     private Animation<TextureRegion> damaged;
     private Animation<TextureRegion> dead;
+    private Animation<TextureRegion> waterDead;
 
     private PlayerState currentState;
     private PlayerState previousState;
     private boolean isRunningLeft;
-    private boolean playerIsDead;
+    private boolean playerIsDeadToWater;
+    private boolean playerIsDeadToTimer;
     private float stateTime = 0;
+    private Vector2 spawn;
+    private int deathTimer;
 
-    public Player(PlayScreen playScreen, CharacterController controller){
+    public Player(PlayScreen playScreen, CharacterController controller, String playerString){
 
         this.playScreen = playScreen;
         this.world = playScreen.getWorld();
         this.controller = controller;
-        createPlayerBody2(512, 512);
+        spawn = this.playScreen.getWorldGen().getSpawnPoint();
+        createPlayerBody(spawn.x, spawn.y);
 
         currentState = PlayerState.IDLE;
         previousState = PlayerState.IDLE;
         isRunningLeft = true;
+        playerIsDeadToTimer = false;
+        playerIsDeadToWater = false;
 
-        idle = createAnimation("Flama-Bill-Complete_Standing_", 8, 0.2f);
-        running = createAnimation("Flama-Bill-Complete_Run_", 8, 0.1f);
-        jumping = createAnimation("Flama-Bill-Complete_Jump_", 8, 0.1f);
-        falling = createAnimation("Flama-Bill-Complete_Fall_", 8,0.1f);
-        fallingSideways = createAnimation("Flama-Bill-Complete_Fall-Sideways_", 7, 0.2f);
-        dead = createAnimation("Flama-Bill-Complete_Died_", 11, 0.1f);
+        idle = createAnimation("Flama-Bill-Complete_Standing" + playerString, 7, 0.2f);
+        running = createAnimation("Flama-Bill-Complete_Run" + playerString, 7, 0.1f);
+        jumping = createAnimation("Flama-Bill-Complete_Jump" + playerString, 8, 0.1f);
+        falling = createAnimation("Flama-Bill-Complete_Fall" + playerString, 7,0.1f);
+        fallingSideways = createAnimation("Flama-Bill-Complete_Fall-Sideways" + playerString, 7, 0.2f);
+        dead = createAnimation("Flama-Bill-Complete_Died" + playerString, 11, 0.1f);
+        waterDead = createAnimation("Flama-Bill-Complete_WaterDeath" + playerString, 10, 0.1f);
 
         //Initial values set.
-        setBounds(512/Flamabill.PPM,512/Flamabill.PPM,96/Flamabill.PPM, 64/Flamabill.PPM);
+        setBounds(spawn.x/Flamabill.PPM,spawn.y/Flamabill.PPM,96/Flamabill.PPM, 64/Flamabill.PPM);
         setRegion(idle.getKeyFrame(stateTime, true));
 
     }
@@ -65,6 +73,7 @@ public class Player extends Sprite {
         Array<TextureRegion> frames = new Array<TextureRegion>();
         for (int i = 0; i < noOfFrames; i++){
             frames.add(new TextureRegion(playScreen.getAtlas().findRegion(atlasString + i), 0, 0, 96, 64));
+            System.out.println("Created: " + atlasString + i);
         }
         return new Animation<TextureRegion>(duration, frames);
     }
@@ -76,6 +85,9 @@ public class Player extends Sprite {
         switch (currentState){
             case DEAD:
                 region = dead.getKeyFrame(stateTime, false);
+                break;
+            case WATERDEAD:
+                region = waterDead.getKeyFrame(stateTime, false);
                 break;
             case RUNNING:
                 region = running.getKeyFrame(stateTime, true);
@@ -115,7 +127,10 @@ public class Player extends Sprite {
 
 
     public PlayerState getState(){
-        if(this.isDead()){
+        if(this.isDeadToWater()){
+            return PlayerState.WATERDEAD;
+        }
+        else if (this.isDeadToTimer()){
             return PlayerState.DEAD;
         }
         else if (this.playerBody.getLinearVelocity().y > 0.4f){
@@ -139,12 +154,15 @@ public class Player extends Sprite {
         setPosition(playerBody.getPosition().x - getWidth()/2, playerBody.getPosition().y - getHeight()/4);
         playerBody.setTransform(playerBody.getPosition(), 0);
         this.setRegion(getFrame(dt));
-        //this.playerSensorFixture.setFriction(10f);
-
-        //System.out.println(this.currentState);
-        //System.out.println(getRegionX() + " " + getRegionY());
-        //System.out.println(getFrame(dt));
-        //System.out.println(this.playerBody.getLinearVelocity().x + " " + this.playerBody.getLinearVelocity().y);
+        if(isDead()){
+            deathTimer += dt;
+            if(deathTimer > 100){
+                deathTimer = 0;
+                respawnPlayer();
+                playerIsDeadToWater = false;
+                playerIsDeadToTimer = false;
+            }
+        }
     }
 
     public void determineMovement(float dt, int jumpKey, int rightKey, int leftKey){
@@ -166,13 +184,7 @@ public class Player extends Sprite {
     }
 
 
-    private void createPlayerBody2(int spawnX, int spawnY) {
-
-        /*
-            TODO:
-                - Bitmask filtering
-                - Update spawn position based on checkpoints
-         */
+    private void createPlayerBody(float spawnX, float spawnY) {
 
         //Create player body definition
         BodyDef bodyDefinition = new BodyDef();
@@ -217,15 +229,31 @@ public class Player extends Sprite {
     }
 
     public void die(){
-        playerIsDead = true;
-        System.out.println(this + " dies");
+        playerIsDeadToWater = true;
     }
 
-    public boolean isDead(){
-        return playerIsDead;
+    private boolean isDeadToWater(){
+        return playerIsDeadToWater;
+    }
+
+    private boolean isDeadToTimer(){
+        return playerIsDeadToTimer;
+    }
+
+    private boolean isDead(){
+        return (playerIsDeadToWater || playerIsDeadToTimer);
     }
 
     public void replenishHealth(){
         System.out.println("Health replenished");
+    }
+
+    public void setSpawn(Vector2 spawn){
+        this.spawn.x = spawn.x;
+        this.spawn.y = spawn.y;
+    }
+
+    private void respawnPlayer(){
+
     }
 }
