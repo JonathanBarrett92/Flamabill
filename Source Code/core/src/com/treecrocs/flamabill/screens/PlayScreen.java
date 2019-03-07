@@ -150,10 +150,10 @@ public class PlayScreen implements Screen {
         cameraPlayer2.position.y = player2.playerBody.getPosition().y;
 
 
-        player.determineMovement(dt, Input.Keys.W, Input.Keys.D, Input.Keys.A, Input.Keys.SHIFT_RIGHT);
+        player.determineMovement(dt, Input.Keys.W, Input.Keys.D, Input.Keys.A, Input.Keys.S);
         player.update(dt);
 
-        player2.determineMovement(dt, Input.Keys.UP, Input.Keys.RIGHT, Input.Keys.LEFT, Input.Keys.SHIFT_LEFT);
+        player2.determineMovement(dt, Input.Keys.UP, Input.Keys.RIGHT, Input.Keys.LEFT, Input.Keys.DOWN);
         player2.update(dt);
 
         for (Campfire campfire: worldGen.getCampfires()){
