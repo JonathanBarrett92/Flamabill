@@ -1,0 +1,1 @@
+java -classpath Development.jar com.treecrocs.flamabill.desktop.DesktopLauncher

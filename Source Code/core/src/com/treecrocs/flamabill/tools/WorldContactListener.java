@@ -18,18 +18,20 @@ public class WorldContactListener implements ContactListener {
         switch (cDef) {
             case EntityCategory.PLAYER | EntityCategory.DEATH:
                 if (fixA.getFilterData().categoryBits == EntityCategory.PLAYER)
-                    ((Player) fixA.getUserData()).die();
+                    ((Player) fixA.getUserData()).dieToWater();
                 else
-                    ((Player) fixB.getUserData()).die();
+                    ((Player) fixB.getUserData()).dieToWater();
                 break;
             case EntityCategory.PLAYER | EntityCategory.CHECKPOINT:
                 if (fixA.getFilterData().categoryBits == EntityCategory.PLAYER) { //false
                     Vector2 currPos = ((Player) fixA.getUserData()).playerBody.getPosition();
                     ((Player) fixA.getUserData()).updateSpawn(currPos);
+                    ((Player) fixA.getUserData()).replenishHealth();
                 }
                 else {
                     Vector2 currPos = ((Player) fixB.getUserData()).playerBody.getPosition();
                     ((Player) fixB.getUserData()).updateSpawn(currPos);
+                    ((Player) fixB.getUserData()).replenishHealth();
                 }
                 break;
         }

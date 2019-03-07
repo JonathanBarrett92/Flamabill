@@ -3,10 +3,7 @@ package com.treecrocs.flamabill.worldobjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -17,23 +14,30 @@ import com.treecrocs.flamabill.screens.PlayScreen;
 import com.treecrocs.flamabill.tools.EntityCategory;
 import com.treecrocs.flamabill.tools.WorldGenerator;
 
+
 public class Campfire extends Sprite {
 
     private TextureAtlas atlas;
     private Animation<TextureRegion> anim;
     private World world;
-    private Body body;
+    public Body body;
     public Rectangle bounds;
     private FixtureDef fdef;
+    private SpriteBatch batch;
+
+    private int campfireWidth = 32;
+    private int campfireHeight = 32;
+    private float elapsedTime;
 
 
     public Campfire(Rectangle bounds, World world){
 
         this.bounds = bounds;
         this.world = world;
-
+        batch = new SpriteBatch();
         atlas = new TextureAtlas(Gdx.files.internal("Campfire-Lit.atlas"));
-        anim = createAnimation("Campfire-Lit_Lit_", 3, 0.1f);
+        anim = createAnimation("Campfire-Lit_Lit_", 4, 0.1f);
+        elapsedTime = 0;
 
         BodyDef bdef = new BodyDef();
         fdef = new FixtureDef();
@@ -45,25 +49,19 @@ public class Campfire extends Sprite {
 
         body = world.createBody(bdef);
 
-        shape.setAsBox((bounds.getWidth() / 2) / Flamabill.PPM, (bounds.getHeight() / 2) / Flamabill.PPM);
+        shape.setAsBox((bounds.getWidth()/2) / Flamabill.PPM, (bounds.getHeight()/2) / Flamabill.PPM);
         fdef.filter.categoryBits = EntityCategory.CHECKPOINT;
         fdef.filter.maskBits = EntityCategory.PLAYER;
         fdef.shape = shape;
         fdef.isSensor = true;
         body.createFixture(fdef);
-
-        setBounds(bounds.getX()/Flamabill.PPM, bounds.getY()/Flamabill.PPM, 16/Flamabill.PPM, 16/Flamabill.PPM);
+        setBounds((bounds.getX()/Flamabill.PPM) - (campfireWidth/4f/Flamabill.PPM), bounds.getY()/Flamabill.PPM, campfireWidth/Flamabill.PPM, campfireHeight/Flamabill.PPM);
 
     }
 
     public void update(float dt){
-        this.setRegion(getFrame(dt));
-    }
-
-    public TextureRegion getFrame(float dt){
-        TextureRegion region;
-        region = anim.getKeyFrame(dt, true);
-        return region;
+        elapsedTime += dt;
+        this.setRegion(anim.getKeyFrame(elapsedTime, true));
     }
 
 
@@ -75,8 +73,8 @@ public class Campfire extends Sprite {
         return new Animation<TextureRegion>(duration, frames);
     }
 
-    public Vector2 getPosition(){
-        return new Vector2(this.bounds.getX(), this.bounds.getY());
+    public Vector2 getCentrePosition(){
+        return new Vector2((bounds.getX() + bounds.getWidth()/2), (bounds.getY() + bounds.getHeight()/2));
     }
 
 }

@@ -1,7 +1,10 @@
 package com.treecrocs.flamabill.characters;
 
 
+import box2dLight.PointLight;
+import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
@@ -9,6 +12,7 @@ import com.badlogic.gdx.utils.Array;
 import com.treecrocs.flamabill.tools.EntityCategory;
 import com.treecrocs.flamabill.Flamabill;
 import com.treecrocs.flamabill.screens.PlayScreen;
+import com.treecrocs.flamabill.worldobjects.Campfire;
 
 
 public class Player extends Sprite {
@@ -18,6 +22,8 @@ public class Player extends Sprite {
     private TextureAtlas atlas;
     private CharacterController controller;
     public Body playerBody;
+    private PointLight playerLight;
+    private RayHandler rayHandler;
 
     private Animation<TextureRegion> idle;
     private Animation<TextureRegion> running;
@@ -36,12 +42,16 @@ public class Player extends Sprite {
     private float stateTime = 0;
     private Vector2 spawn;
     private int deathTimer;
+    private boolean replenishingHealth;
+    private float replenishTimer = 1f;
 
-    public Player(PlayScreen playScreen, CharacterController controller, String playerString){
+    public Player(PlayScreen playScreen, CharacterController controller, String playerString, RayHandler rayHandler){
 
         this.playScreen = playScreen;
         this.world = playScreen.getWorld();
         this.controller = controller;
+        this.rayHandler = rayHandler;
+
         spawn = this.playScreen.getWorldGen().getSpawnPoint();
         createPlayerBody(spawn.x, spawn.y);
 
@@ -52,7 +62,7 @@ public class Player extends Sprite {
         playerIsDeadToWater = false;
 
         idle = createAnimation("Flama-Bill-Complete_Standing" + playerString, 8, 0.2f);
-        running = createAnimation("Flama-Bill-Complete_Run" + playerString, 8, 0.1f);
+        running = createAnimation("Flama-Bill-Complete_Run" + playerString, 8, 0.07f);
         jumping = createAnimation("Flama-Bill-Complete_Jump" + playerString, 9, 0.1f);
         falling = createAnimation("Flama-Bill-Complete_Fall" + playerString, 8,0.1f);
         fallingSideways = createAnimation("Flama-Bill-Complete_Fall-Sideways" + playerString, 8, 0.2f);
@@ -155,14 +165,22 @@ public class Player extends Sprite {
         this.setRegion(getFrame(dt));
         if(isDead()){
             deathTimer++;
-            if (deathTimer > 50){
+            if (deathTimer > 60){
                 respawnPlayer();
                 deathTimer = 0;
             }
         }
+
+        if(replenishingHealth){
+            replenishTimer -= dt;
+            if(replenishTimer <= 0){
+                replenishingHealth = false;
+                replenishTimer = 1f;
+            }
+        }
     }
 
-    public void determineMovement(float dt, int jumpKey, int rightKey, int leftKey){
+    public void determineMovement(float dt, int jumpKey, int rightKey, int leftKey, int dieKey){
         if(!isDead()){
             if(Gdx.input.isKeyJustPressed(jumpKey)) {
                 this.jump();
@@ -175,6 +193,9 @@ public class Player extends Sprite {
             if(Gdx.input.isKeyPressed(leftKey) && playerBody.getLinearVelocity().x >= -2) {
                 //playerBody.setLinearVelocity(new Vector2(-1.8f, 0f));
                 playerBody.applyLinearImpulse(new Vector2(-0.1f, 0f), playerBody.getWorldCenter(), true);
+            }
+            if(Gdx.input.isKeyJustPressed(dieKey)){
+                this.dieToTimer();
             }
         }
 
@@ -192,7 +213,7 @@ public class Player extends Sprite {
         //Create player body Fixture Definition and shape
         FixtureDef fixtureDef = new FixtureDef();
         PolygonShape playerBox = new PolygonShape();
-        playerBox.setAsBox(15/Flamabill.PPM,15/Flamabill.PPM);
+        playerBox.setAsBox(8/Flamabill.PPM,15/Flamabill.PPM);
 
         //Filtering
         fixtureDef.filter.categoryBits = EntityCategory.PLAYER;
@@ -205,7 +226,7 @@ public class Player extends Sprite {
         //Creating a head to prevent bug with ceiling contact causing impossible states.
         PolygonShape head = new PolygonShape();
         float offsetY = 16f/Flamabill.PPM;
-        head.setAsBox(15/Flamabill.PPM, 1/Flamabill.PPM, new Vector2(0, offsetY), 0 );
+        head.setAsBox(8/Flamabill.PPM, 1/Flamabill.PPM, new Vector2(0, offsetY), 0 );
         fixtureDef.filter.categoryBits = EntityCategory.HEADSENSOR;
         fixtureDef.filter.maskBits = EntityCategory.PLAYER | EntityCategory.GROUND;
         fixtureDef.shape = head;
@@ -214,9 +235,6 @@ public class Player extends Sprite {
 
     }
 
-    public float getStateTime() {
-        return stateTime;
-    }
 
     private void jump(){
         if (currentState != PlayerState.JUMPING && currentState != PlayerState.FALLING && currentState != PlayerState.FALLINGSIDEWAYS) {
@@ -225,15 +243,19 @@ public class Player extends Sprite {
         }
     }
 
-    public void die(){
+    public void dieToWater(){
         playerIsDeadToWater = true;
+    }
+
+    public void dieToTimer(){
+        playerIsDeadToTimer = true;
     }
 
     private boolean isDeadToWater(){
         return playerIsDeadToWater;
     }
 
-    private boolean isDeadToTimer(){
+    public boolean isDeadToTimer(){
         return playerIsDeadToTimer;
     }
 
@@ -242,7 +264,11 @@ public class Player extends Sprite {
     }
 
     public void replenishHealth(){
-        //System.out.println("Health replenished");
+        replenishingHealth = true;
+    }
+
+    public boolean isReplenishingHealth(){
+        return replenishingHealth;
     }
 
     public void setSpawn(Vector2 spawn){

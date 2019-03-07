@@ -9,21 +9,21 @@ Campfire-Lit_Un-lit
   orig: 32,32
   offset: 0,0
   index: 0
-Campfire-Lit_Lighting
+Campfire-Lit_Lighting_0
   rotate: false
   xy: 32,0
   size: 32,32
   orig: 32,32
   offset: 0,0
   index: 0
-Campfire-Lit_Lighting
+Campfire-Lit_Lighting_1
   rotate: false
   xy: 64,0
   size: 32,32
   orig: 32,32
   offset: 0,0
   index: 1
-Campfire-Lit_Lighting
+Campfire-Lit_Lighting_2
   rotate: false
   xy: 96,0
   size: 32,32

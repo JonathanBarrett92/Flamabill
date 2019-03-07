@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Align;
 import com.treecrocs.flamabill.Flamabill;
 
 
@@ -35,6 +36,8 @@ public class MenuScreen implements Screen {
 
     private Label PlayLabel;
     private Label QuitLabel;
+    BitmapFontCache fontCache;
+    BitmapFont font;
 
     private Music menuMusic;
 
@@ -48,7 +51,8 @@ public class MenuScreen implements Screen {
 
     public MenuScreen(Flamabill game){
         this.game = game;
-        BitmapFont font = new BitmapFont();
+        font = new BitmapFont();
+        fontCache = new BitmapFontCache(font);
 
 //        backgroundTexture = new Texture("DumbBackground.png");
 //        backgroundSprite = new Sprite(backgroundTexture);
@@ -75,7 +79,7 @@ public class MenuScreen implements Screen {
         Logo[6] = (textureAtlas.findRegion("Logo_chillin7"));
 
 
-        LogoAnimation = new Animation(0.08f, Logo);
+        LogoAnimation = new Animation(0.12f, Logo);
 
         TextureRegion[] Logo2 = new TextureRegion[9];
 
@@ -90,7 +94,7 @@ public class MenuScreen implements Screen {
         Logo2[7] = (textureAtlas.findRegion("Logo_Rise2"));
         Logo2[8] = (textureAtlas.findRegion("Logo_Rise3"));
 
-        logoAnimation2 = new Animation(0.08f,Logo2);
+        logoAnimation2 = new Animation(0.12f,Logo2);
 
 
 
@@ -127,15 +131,11 @@ public class MenuScreen implements Screen {
 
     @Override
     public void render(float delta){
-//52.9, 80.8, 92.2
-        BitmapFont font = new BitmapFont();
+
         Gdx.gl.glClearColor(52.9f/255f, 80.8f/255f, 92.2f/255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
 
-        // batch.begin();
-        //renderBackground();
-        //batch.end();
 
         //used to find out where the mouse is as well as position the buttons on the X axis
         int x = (Flamabill.V_WIDTH/2) - (Button_Width/2);
@@ -181,8 +181,8 @@ public class MenuScreen implements Screen {
         game.batch.end();
 
         batch.begin();
-        font.draw(batch, "Play", PlayX,  PlayY);
-        font.draw(batch, "Quit", QuitX, QuitY);
+        font.draw(batch, "Play", PlayX,  PlayY+15);
+        font.draw(batch, "Quit", QuitX, QuitY+50);
         batch.end();
 
 

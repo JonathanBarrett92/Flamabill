@@ -1,5 +1,7 @@
 package com.treecrocs.flamabill.tools;
 
+import box2dLight.RayHandler;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -42,6 +44,7 @@ public class WorldGenerator {
         spawn = getSpawnPoint();
         spawnX = spawn.x;
         spawnY = spawn.y;
+
 
 
         /*
@@ -112,7 +115,7 @@ public class WorldGenerator {
         for (MapObject object : map.getLayers().get("Player1Spawn").getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             x = rect.getX();
-            y = rect.getY();
+            y = rect.getY() + 16;
         }
         return new Vector2(x, y);
     }

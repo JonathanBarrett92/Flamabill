@@ -11,40 +11,45 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.treecrocs.flamabill.Flamabill;
+import com.treecrocs.flamabill.characters.Player;
 
 public class Hud {
 
     public Stage stage;
     private Viewport viewport;
 
-    private float elapsedTime = 0;
-    private SpriteBatch batch;
+    public SpriteBatch batch;
     private TextureAtlas barAtlas;
 
-    private Integer worldTimer;
-    private float timeCount;
-
-    public Animation<TextureRegion> HealthBar;
-
     private Label countdownLabel;
-    private Label FlamaLabel;
+    private Label flamaLabel;
+
+    private int healthBarWidth = 192;
+    private int healthBarHeight = 64;
+    private float elapsedTime = 0;
+    private float spawnDelay = 1.8f;
+    private Player player;
+    private boolean spawning;
+    private boolean thereIsAWinner;
+
+    public Animation<TextureRegion> healthBar;
+
 
     private boolean deadToTimer;
 
-    public Hud(SpriteBatch sb){
-
+    public Hud(SpriteBatch sb, String playerLabel, Player player){
+        this.player = player;
         batch = new SpriteBatch();
         barAtlas = new TextureAtlas(Gdx.files.internal("HealthBar.atlas"));
         Array<TextureRegion> frames = new Array<TextureRegion>();
         frames.clear();
 
         for (int i = 0; i < 35; i++ ) {
-            frames.add(new TextureRegion(barAtlas.findRegion("HealthBar " + i), 0, 0, 96, 32));
+            TextureRegion temp = new TextureRegion(barAtlas.findRegion("HealthBar " + i), 0, 0, healthBarWidth, healthBarHeight);
+            frames.add(temp);
         }
-        HealthBar = new Animation<TextureRegion>(1f, frames);
+        healthBar = new Animation<TextureRegion>(0.5f, frames);
 
-        worldTimer = 10;
-        timeCount = 0;
 
         viewport = new FitViewport(Flamabill.V_WIDTH, Flamabill.V_HEIGHT/2f, new OrthographicCamera());
         stage = new Stage(viewport, sb);
@@ -54,40 +59,66 @@ public class Hud {
         table.padRight(Flamabill.V_WIDTH - Flamabill.V_WIDTH/8f);
         table.setFillParent(true);
 
-        countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        FlamaLabel = new Label("Player ", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        //countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        flamaLabel = new Label(playerLabel, new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
 
-        table.add(FlamaLabel).expandX().padTop(10);
+        table.add(flamaLabel).expandX().padTop(10);
         table.row();
-        table.add(countdownLabel).expandX();
-
+        //table.add(countdownLabel).expandX();
 
         stage.addActor(table);
-
 
     }
 
 
     public void update(float dt) {
-        timeCount += dt;
 
-        if (timeCount >= 1) {
-            worldTimer--;
-            countdownLabel.setText(String.format("%03d", worldTimer));
-            timeCount = 0;
+        if(healthBar.getKeyFrameIndex(elapsedTime) == 34){
+            player.dieToTimer();
+            spawning = true;
+            elapsedTime = 0;
         }
 
-        if(worldTimer == 0){
-            deadToTimer = true;
-            worldTimer = 10;
+        if(player.isDeadToTimer()){
+            spawning = true;
+            elapsedTime = 0;
         }
 
+        if(spawning){
+            elapsedTime = 0;
+            spawnDelay -= dt;
+            if(spawnDelay <= 0){
+                spawning = false;
+                spawnDelay = 1.8f;
+            }
+        }
+
+        if(player.isReplenishingHealth()){
+            elapsedTime = 0;
+        }
     }
+
+    public void draw(float dt){
+        batch.begin();
+
+        elapsedTime += dt;
+        batch.draw(healthBar.getKeyFrame(elapsedTime,false),(Flamabill.V_WIDTH/2f) - (healthBarWidth/2f),100);
+//        if(thereIsAWinner){
+//            new Label(displayWinner())
+//        }
+        batch.end();
+    }
+
 
     public void dispose(){
         stage.dispose();
         batch.dispose();
+    }
+
+    public String displayWinner(String winner){
+        this.thereIsAWinner = true;
+        return winner;
     }
 
 }
